@@ -1,0 +1,28 @@
+const blueVersion = {
+  primary: '#60D394',
+  primaryLight: '#59DF96',
+  primaryGradientStart: '#66E29E',
+  primaryGradientEnd: '#5CC88C',
+  secondaryGradientStart: '#FF1358',
+  secondaryGradientEnd: '#FF1358',
+  profileGradientStart: '#54CBF6',
+  profileGradientEnd: '#49D2D0',
+  secondary: '#FF1358',
+  grey: '#acacac',
+  gray: '#5f5f5f',
+  darkGray: '#4d4d4d',
+  lightGray: '#9b9b9b',
+  white: '#ffffff',
+  blue: '#5A81F7',
+  bluish: '#F1F1F7',
+  black: '#000000',
+  green: '#6DD0A3',
+  yellow: '#ffc247',
+  nutriScore_A: '#058b49',
+  nutriScore_B: '#74c928',
+  nutriScore_C: '#fbc801',
+  nutriScore_D: '#f4730e',
+  nutriScore_E: '#ef2d1a',
+};
+
+export default blueVersion;
