@@ -6,7 +6,6 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 import Background from '../../../components/Background';
-import Logo from '../../../components/Logo';
 import Header from '../../../components/Header';
 import TextInput from '../../../components/TextInput';
 import BackButton from '../../../components/BackButton';
@@ -14,10 +13,7 @@ import { theme } from '../../../core/theme';
 import { emailValidator } from '../../../helpers/emailValidator';
 import { passwordValidator } from '../../../helpers/passwordValidator';
 import Button from '../../../components/Button';
-import Paragraph from '../../../components/Paragraph';
 import LogoText from '../../../components/LogoText';
-
-type Props = {};
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' });
@@ -40,36 +36,39 @@ export default function RegisterScreen({ navigation }) {
       .then(userCredential => {
         console.log('User account created & signed in!');
         console.log('UserCrednetial', userCredential.user);
-        
+
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, password: password })
-      };
-        try{
-        fetch("https://api.interactions.ics.unisg.ch/foodcoach/backend/user/register", requestOptions)
-        .then((res) => res.json())
-        .then((res) => {
-        if(res.token){
-          firestore().collection('users')
-          .doc(userCredential.user.uid)
-          .set({
-            email:email,
-            token:res.token
-          });
-        }else{
-          firestore().collection('users')
-          .doc(userCredential.user.uid)
-          .set({
-            token:"None"});
-        }
-      });
-    
-        }
-        catch (error) {
+          body: JSON.stringify({ email: email, password: password }),
+        };
+        try {
+          fetch(
+            'https://api.interactions.ics.unisg.ch/foodcoach/backend/user/register',
+            requestOptions,
+          )
+            .then(res => res.json())
+            .then(res => {
+              if (res.token) {
+                firestore()
+                  .collection('users')
+                  .doc(userCredential.user.uid)
+                  .set({
+                    email: email,
+                    token: res.token,
+                  });
+              } else {
+                firestore()
+                  .collection('users')
+                  .doc(userCredential.user.uid)
+                  .set({
+                    token: 'None',
+                  });
+              }
+            });
+        } catch (error) {
           console.error(error);
-      }
-     
+        }
 
         userCredential.user.sendEmailVerification().then(() => {
           console.log('Email verificiation sent');
@@ -78,13 +77,13 @@ export default function RegisterScreen({ navigation }) {
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-          alert('That email address is already in use!');
+          console.log('Diese Mail ist bereits in Verwendung.');
+          alert('Diese Mail ist bereits in Verwendung.');
         }
 
         if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-          alert('That email address is invalid!');
+          console.log('Die Mail ist ungültig.');
+          alert('Die Mail ist ungültig.');
         }
 
         console.error(error);
@@ -96,7 +95,6 @@ export default function RegisterScreen({ navigation }) {
       <BackButton goBack={navigation.goBack} />
       <View style={styles.header}>
         <LogoText />
-        {/* <Logo /> */}
       </View>
       <View
         style={{
@@ -104,9 +102,7 @@ export default function RegisterScreen({ navigation }) {
         }}
       >
         <Header>Account erstellen</Header>
-        {/* <Paragraph>Erlebe die Welt der Ernährung</Paragraph> */}
       </View>
-      {/* <Paragraph>Willkommen zurück</Paragraph> */}
       <TextInput
         label="Email"
         returnKeyType="next"

@@ -10,8 +10,6 @@ import TextInput from '../../../components/TextInput'
 import Button from '../../../components/Button'
 import { emailValidator } from '../../../helpers/emailValidator'
 
-type Props = {};
-
 export default function ResetPasswordScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
 
@@ -30,11 +28,11 @@ export default function ResetPasswordScreen({ navigation }) {
     .sendPasswordResetEmail(email)
     .then(user => {
       console.log("User:", user);
-      alert("If this account exists, a reset link will be sent to the mail.");
+      alert("Falls dieser Account existiert, haben wir ein Mail für das zurücksetzen des Passworts verschickt.");
     })
     .catch(error => {
       console.error(error);
-      alert("Password reset is currently not available;.");
+      alert("Das zurücksetzen des Passworts ist derzeit nicht möglich.");
     });
   }
 

@@ -63,7 +63,12 @@ export default function PurchaseDetails(props) {
               {purchaseDetails.date}
             </Text>
           </View>
-          <View style={[styles.purchaseDetailsInfo_labelContainer, {borderBottomWidth: 0}]}>
+          <View
+            style={[
+              styles.purchaseDetailsInfo_labelContainer,
+              { borderBottomWidth: 0 },
+            ]}
+          >
             <Text
               style={[
                 styles.purchaseDetailsInfo_labelContainer_title,
@@ -203,5 +208,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-
 });

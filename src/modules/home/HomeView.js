@@ -1,38 +1,20 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  ImageBackground,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import auth from '@react-native-firebase/auth';
 
-import { Button } from '../../components';
 import { fonts, colors } from '../../styles';
 import { Text } from '../../components/StyledText';
 import Purchase from '../../components/foodtracking/PurchaseListEntry';
 
-function logOut() {
-  auth()
-    .signOut()
-    .then(() => console.log('User signed out!'));
-}
-
 export default function HomeScreen({ isExtended, setIsExtended }) {
-  // const rnsUrl = 'https://reactnativestarter.com';
-  // const handleClick = () => {
-  //   Linking.canOpenURL(rnsUrl).then(supported => {
-  //     if (supported) {
-  //       Linking.openURL(rnsUrl);
-  //     } else {
-  //       console.log(`Don't know how to open URI: ${rnsUrl}`);
-  //     }
-  //   });
-  // };
-
+  // TODO: Go tho the purchase
   function goToPurchase() {
     props.navigation.dispatch(state => {
-      const routes = [...state.routes, {name: 'HistoryScreen'}, {name: "PurchaseDetails", params: {test:"r"}}];
+      const routes = [
+        ...state.routes,
+        { name: 'HistoryScreen' },
+        { name: 'PurchaseDetails', params: { test: 'r' } },
+      ];
     });
   }
 
@@ -58,38 +40,8 @@ export default function HomeScreen({ isExtended, setIsExtended }) {
           score={'C'}
         />
       </View>
-      {/* <Text size={30} bold white style={styles.title}>
-            React Native Starter
-          </Text> */}
 
-      <View style={[styles.section, styles.sectionLarge]}>
-        {/* <Purchase/>
-      <Purchase/>
-      <Purchase/> */}
-        {/* <Text color="#19e7f7" hCenter size={15} style={styles.description}>
-          {' '}
-       </Text>
-        <View style={styles.priceContainer}>
-          <View style={{ flexDirection: 'row' }}>
-            <Text white bold size={50} style={styles.price}>
-              {isExtended ? '$499' : '$99'}
-            </Text>
-          </View>
-          <TouchableOpacity
-            style={styles.priceLink}
-            onPress={() =>
-              isExtended ? setIsExtended(false) : setIsExtended(true)
-            }
-          >
-            <Button
-              style={[styles.demoButton, { flexBasis: '47%' }]}
-              primary
-              caption="Log out"
-              onPress={logOut}
-            />
-          </TouchableOpacity>
-        </View> */}
-      </View>
+      <View style={[styles.section, styles.sectionLarge]}></View>
     </View>
   );
 }
@@ -101,12 +53,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
   },
-  bgImage: {
-    flex: 1,
-
-    // marginHorizontal: -20,
-    backgroundColor: colors.white,
-  },
   headerText: {
     flex: 1,
     paddingHorizontal: 20,
@@ -116,7 +62,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   scoreCircle: {
-    // flex: 1,
     paddingHorizontal: 20,
     justifyContent: 'center',
     paddingTop: 20,
@@ -147,21 +92,13 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 20,
     marginTop: -510,
-    // left: 0,
-    // top: 0,
-    // position: 'absolute',
-    // justifyContent: 'center',
     alignItems: 'center',
-    // alignSelf: 'center',
-    // marginLeft: 'auto',
-    // marginRight: 'auto',
   },
   lastPurchaseSection: {
     width: '90%',
     marginTop: 20,
     flex: 1,
   },
-
   section: {
     flex: 1,
     paddingHorizontal: 20,
@@ -170,35 +107,5 @@ const styles = StyleSheet.create({
     borderColor: colors.black,
     borderRadius: 2,
     backgroundColor: colors.white,
-  },
-  sectionLarge: {
-    flex: 2,
-    justifyContent: 'space-around',
-  },
-  sectionHeader: {
-    marginBottom: 8,
-  },
-  priceContainer: {
-    alignItems: 'center',
-  },
-  description: {
-    padding: 15,
-    lineHeight: 25,
-  },
-  titleDescription: {
-    color: '#19e7f7',
-    textAlign: 'center',
-    fontFamily: fonts.primaryRegular,
-    fontSize: 15,
-  },
-  title: {
-    marginTop: 30,
-  },
-  price: {
-    marginBottom: 5,
-  },
-  priceLink: {
-    borderBottomWidth: 1,
-    borderBottomColor: colors.primary,
   },
 });

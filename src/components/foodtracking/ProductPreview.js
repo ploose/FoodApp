@@ -10,27 +10,9 @@ export default function ProductPreview(props) {
       <Text style={styles.quantity}>{props.quantity}</Text>
       <Text style={styles.price}>{props.price}</Text>
       <Image
-            source={require('../../../assets/images/nutriscore/D.png')}
-            style={styles.nutriScore}
-          />
-      {/* <View style={styles.purchaseDetailsInfo}>
-          <View style={styles.nameContainer}>
-            <Text style={[styles.name, { fontWeight: 'bold' }]}>
-              {'Geschäft'}
-            </Text>
-            <Text style={styles.name}>{purchaseDetails.store}</Text>
-          </View>
-          <View style={styles.dateContainer}>
-            <Text style={[styles.date, { fontWeight: 'bold' }]}>{'Datum'}</Text>
-            <Text style={styles.date}>{purchaseDetails.date}</Text>
-          </View>
-          <View style={styles.costContainer}>
-            <Text style={[styles.cost, { fontWeight: 'bold' }]}>
-              {'Kosten'}
-            </Text>
-            <Text style={styles.cost}>{purchaseDetails.total}</Text>
-          </View>
-        </View> */}
+        source={require('../../../assets/images/nutriscore/D.png')}
+        style={styles.nutriScore}
+      />
     </View>
   );
 }
@@ -45,8 +27,6 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    // justifyContent: "space-evenly",
-    // padding: 5,
     flex: 1,
   },
   product: {
@@ -60,7 +40,6 @@ const styles = StyleSheet.create({
   },
   nutriScore: {
     alignSelf: 'center',
-    // flex: 1,
     width: 110,
     resizeMode: 'contain',
     height: 45,

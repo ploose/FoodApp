@@ -2,32 +2,15 @@ import React from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { colors } from '../../styles';
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib';
-import { ProductPreview } from '..';
-import { FlatList } from 'react-native-gesture-handler';
-import { useState } from 'react';
 import NutritionListEntry from './NutritionListEntry';
 
 export default function ProductDetails(props) {
-  // console.log('props', JSON.stringify(props.route.params));
-  // let purchaseDetails = props.route.params;
-
-  let [SwipeablePanelActive, setSwipablePanelActive] = useState(true);
-
   openPanel = msg => {
     setSwipablePanelActive(true);
   };
   closePanel = () => {
     setSwipablePanelActive(false);
   };
-
-  function getProductsArray(products) {
-    let myArray = [];
-    for (element in products) {
-      products[element].id = element;
-      myArray.push(products[element]);
-    }
-    return myArray;
-  }
 
   function getNutriScoreImage(nutriScore) {
     switch (nutriScore) {
@@ -95,33 +78,32 @@ export default function ProductDetails(props) {
             <Text style={{ fontSize: 13 }}>350g</Text>
           </View>
           <View style={styles.headerContainer_productInfo_nutriScore}>
-            {getNutriScoreImage("A")}
+            {getNutriScoreImage('A')}
           </View>
         </View>
       </View>
 
       <View style={styles.nutritionInfoContainer}>
-        <Text style={{fontWeight: 'bold'}}>Nutrition per 100g</Text>
+        <Text style={{ fontWeight: 'bold' }}>Nutrition per 100g</Text>
         <NutritionListEntry
           color={'green'}
           quantity={'5.6g'}
           name={'Fett'}
           description={'Mittlere Menge'}
-          />
-             <NutritionListEntry
+        />
+        <NutritionListEntry
           color={'red'}
           quantity={'5.6g'}
           name={'Fett'}
           description={'Mittlere Menge'}
-          />
-             <NutritionListEntry
+        />
+        <NutritionListEntry
           color={'yellow'}
           quantity={'5.6g'}
           name={'Fett'}
           description={'Mittlere Menge'}
-          />
+        />
       </View>
-      {/* <View style={styles.lastPurchaseBoxSection}></View> */}
     </View>
   );
 }
@@ -129,7 +111,6 @@ export default function ProductDetails(props) {
 const styles = StyleSheet.create({
   productInfoContainer: {
     backgroundColor: colors.primary,
-    // padding: 5,
     flex: 1,
     flexDirection: 'column',
   },
@@ -137,7 +118,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     flex: 1,
     flexDirection: 'row',
-    // padding: 5,
     justifyContent: 'space-evenly',
     flexBasis: '60%',
     padding: 10,
@@ -159,10 +139,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     flex: 1,
     padding: 10,
-    // minHeight: '100%',
     flexDirection: 'column',
-    // padding: 5,
-    // borderTopWidth: 2,
     justifyContent: 'space-evenly',
     flexBasis: '40%',
   },
@@ -174,7 +151,6 @@ const styles = StyleSheet.create({
   },
   nutriScore: {
     alignSelf: 'center',
-    // flex: 1,
     width: 150,
     resizeMode: 'contain',
     height: 55,

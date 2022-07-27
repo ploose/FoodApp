@@ -4,7 +4,6 @@ import { colors } from '../../styles';
 import { View, Text, Image } from 'react-native-ui-lib';
 
 export default function Purchase(props) {
-
   function getNutriScoreImage(nutriScore) {
     switch (nutriScore) {
       case 'A':
@@ -38,13 +37,13 @@ export default function Purchase(props) {
             style={styles.nutriScore}
           />
         );
-        case 'E':
-          return (
-            <Image
-              source={require('../../../assets/images/nutriscore/E.png')}
-              style={styles.nutriScore}
-            />
-          );
+      case 'E':
+        return (
+          <Image
+            source={require('../../../assets/images/nutriscore/E.png')}
+            style={styles.nutriScore}
+          />
+        );
 
       default:
         Alert.alert('NUMBER NOT FOUND');
@@ -72,9 +71,10 @@ export default function Purchase(props) {
         <View style={styles.costContainer}>
           <Text style={styles.cost}>CHF {props.cost}</Text>
         </View>
-        <View style={styles.nutriScoreContainer}>{getNutriScoreImage(props.score)}</View>
+        <View style={styles.nutriScoreContainer}>
+          {getNutriScoreImage(props.score)}
+        </View>
       </View>
-      {/* <View style={styles.lastPurchaseBoxSection}></View> */}
     </View>
   );
 }
@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
     borderColor: colors.black,
     backgroundColor: colors.primary,
     borderWidth: 2,
-    // padding: 5,
     flex: 1,
   },
   lastPurchaseBoxSection: {
@@ -96,7 +95,6 @@ const styles = StyleSheet.create({
   lastPurchaseBoxSection2: {
     flex: 1,
     flexDirection: 'row',
-    // padding: 5,
     borderTopWidth: 2,
     justifyContent: 'space-evenly',
     flexBasis: '60%',
@@ -104,8 +102,6 @@ const styles = StyleSheet.create({
   dateContainer: {
     borderRightWidth: 2,
     padding: 5,
-    // alignItems: 'center',
-    // textAlign: 'center',
     justifyContent: 'center',
     flex: 1,
     flexBasis: '33%',
@@ -131,25 +127,19 @@ const styles = StyleSheet.create({
   },
   nutriScore: {
     alignSelf: 'center',
-    // flex: 1,
     width: 100,
     resizeMode: 'contain',
     height: 40,
   },
   logo: {
-    // flex: 1,
     width: 100,
     resizeMode: 'contain',
     height: 20,
   },
   logoSection: {
-    // width: '50%',
     flex: 1,
     flexBasis: '40%',
     alignSelf: 'center',
-    // borderColor: colors.black,
-    // backgroundColor: colors.bluish,
-    // borderWidth: 2,
     paddingLeft: 5,
   },
   retailerNameSection: {

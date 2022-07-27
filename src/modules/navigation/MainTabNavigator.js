@@ -4,9 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { colors } from '../../styles';
 import tabNavigationData from './tabNavigationData';
-import tabNavigationDataNotAuth from './tabNavigationDataNotAuth';
 import { firebase } from '@react-native-firebase/auth';
-import MultiStepSignUpSurvey from '../../modules/survey/MultiStepSignUpSurvey';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -44,7 +42,7 @@ export default function BottomTabs() {
                 style={{
                   fontSize: 12,
                   color: focused ? colors.primary : colors.gray,
-                  bottom: 4
+                  bottom: 4,
                 }}
               >
                 {item.name}
@@ -60,6 +58,8 @@ export default function BottomTabs() {
   );
 }
 
+// TODO: Survey
+
 // export const SurveyScreenStack = createStackNavigator({
 //   SurveyScreen: { screen: MultiStepSignUpSurvey },
 
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   tabBarItemContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    // borderBottomWidth: 2,
     borderBottomColor: colors.white,
     paddingHorizontal: 10,
     bottom: Platform.OS === 'ios' ? -5 : -5,

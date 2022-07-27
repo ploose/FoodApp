@@ -1,26 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  AreaChart,
-  LineChart,
-  Grid,
-  XAxis,
-  YAxis,
-} from 'react-native-svg-charts';
-import {
-  StyleSheet,
-  View,
-  Platform,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  PanResponder,
-  Dimensions,
-} from 'react-native';
+import { LineChart, XAxis } from 'react-native-svg-charts';
+import { StyleSheet, View, Text, PanResponder, Dimensions } from 'react-native';
 import { colors, fonts } from '../../styles';
-import dateFns from 'date-fns';
-import * as scale from 'd3-scale';
-import * as shape from 'd3-shape';
 
 import Svg, {
   Circle,
@@ -33,21 +14,6 @@ import Svg, {
   Stop,
   Text as SvgText,
 } from 'react-native-svg';
-
-import { RadioGroup, GridRow } from '../../components';
-
-function CustomBackground() {
-  return (
-    <Image
-      style={styles.tinyLogo}
-      source={{
-        uri:
-          // 'https://i.ibb.co/tP2cGGh/Screenshot-14.png',
-          'https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246-300x157.jpg',
-      }}
-    />
-  );
-}
 
 // Code based on https://github.com/JesperLekland/react-native-svg-charts-examples/blob/master/storybook/stories/interactive-chart/index.js
 
@@ -64,35 +30,28 @@ const MyChart = props => {
     '08-31 15:12',
     '08-31 15:13',
   ]);
-  const [priceList, setPriceList] = useState([
-    50,
-    130,
-    270,
-    350,
-    400,
-  ]);
+  const [priceList, setPriceList] = useState([50, 130, 270, 350, 400]);
   const size = useRef(dateList.length);
   const totalChartWidth = apx(750);
-  const totalChartHeight = apx(750/2);
+  const totalChartHeight = apx(750 / 2);
 
   const Decorator = ({ x, y, data }) => {
     return data.map((value, index) => (
-        <Circle
-            key={ index }
-            cx={ x(index) }
-            cy={ y(value) }
-            r={ 4 }
-            stroke={ 'rgb(134, 65, 244)' }
-            fill={ 'white' }
-        />
-    ))
-}
+      <Circle
+        key={index}
+        cx={x(index)}
+        cy={y(value)}
+        r={4}
+        stroke={'rgb(134, 65, 244)'}
+        fill={'white'}
+      />
+    ));
+  };
 
   const [positionX, setPositionX] = useState(-1); // The currently selected X coordinate position
 
   const panResponder = useRef(
     PanResponder.create({
-      // 要求成为响应者：
       onStartShouldSetPanResponder: (evt, gestureState) => true,
       onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
       onMoveShouldSetPanResponder: (evt, gestureState) => true,
@@ -166,13 +125,7 @@ const MyChart = props => {
   );
 
   const CustomLine = ({ line }) => (
-    <Path
-      key="line"
-      d={line}
-      stroke="white"
-      strokeWidth={apx(6)}
-      fill="none"
-    />
+    <Path key="line" d={line} stroke="white" strokeWidth={apx(6)} fill="none" />
   );
 
   const CustomGradient = () => (
@@ -237,7 +190,12 @@ const MyChart = props => {
     );
   };
 
-  const verticalContentInset = { top: apx(40), bottom: apx(40), left: apx(60), right: apx(30) };
+  const verticalContentInset = {
+    top: apx(40),
+    bottom: apx(40),
+    left: apx(60),
+    right: apx(30),
+  };
 
   const data = [
     { value: 50, label: 'A', date: '08-31 15:09' },
@@ -249,7 +207,7 @@ const MyChart = props => {
       style={{
         backgroundColor: '#fff',
         alignItems: 'stretch',
-        width: '100%'
+        width: '100%',
       }}
     >
       <View
@@ -272,7 +230,14 @@ const MyChart = props => {
           >
             <CustomLine />
             <Svg belowChart={true}>
-              <View style={{ height: apx(440), flex: 0, flexDirection: 'column', paddingLeft: 5 }}>
+              <View
+                style={{
+                  height: apx(440),
+                  flex: 0,
+                  flexDirection: 'column',
+                  paddingLeft: 5,
+                }}
+              >
                 <Text style={styles.graphLetter}>A</Text>
                 <Text style={styles.graphLetter}>B</Text>
                 <Text style={styles.graphLetter}>C</Text>
@@ -321,7 +286,7 @@ const MyChart = props => {
             {/* <CustomGrid /> */}
             <CustomGradient />
             <Tooltip />
-            <Decorator/>
+            <Decorator />
           </LineChart>
         </View>
 
@@ -359,9 +324,7 @@ const MyChart = props => {
 
 export default class StatisticsScreen extends React.Component {
   render() {
-    return (
-      <MyChart/>
-    );
+    return <MyChart />;
   }
 }
 
@@ -377,6 +340,4 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     color: 'white',
   },
-
-
 });

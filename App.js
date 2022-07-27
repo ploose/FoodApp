@@ -4,12 +4,10 @@ import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 import { colors } from './src/styles';
-import { Button } from 'react-native-ui-lib';
 import auth from '@react-native-firebase/auth';
 import { store, persistor } from './src/redux/store';
 import firestore from '@react-native-firebase/firestore';
 import AppView from './src/modules/AppViewContainer';
-import StartScreen from './src/modules/login/startScreen/StartScreenView';
 
 const usersCollection = firestore().collection('users')
 
@@ -52,7 +50,6 @@ function LoginApp() {
       <NavigationContainer>
       <PersistGate
       loading={
-        // eslint-disable-next-line react/jsx-wrap-multilines
         <View style={styles.container}>
           <ActivityIndicator color={colors.red} />
         </View>
@@ -76,11 +73,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-  },
-  buttonContainer: {
-    flex: 1,
-    backgroundColor: 'gold',
-    padding: 10,
   },
   button: {
     flex: 1,

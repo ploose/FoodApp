@@ -4,10 +4,6 @@ import { colors } from '../../styles';
 import { View, Text, Image } from 'react-native-ui-lib';
 
 export default function NutritionListEntry(props) {
-  // console.log('params', JSON.stringify(props.params));
-  // let nutritionDetails = props.params;
-
-  console.log('props', props);
 
   function getNutritionColor(color) {
     switch (color) {
