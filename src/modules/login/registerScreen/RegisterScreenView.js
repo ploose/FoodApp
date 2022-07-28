@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-paper';
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 
 import Background from '../../../components/Background';
 import Header from '../../../components/Header';
@@ -14,6 +12,7 @@ import { emailValidator } from '../../../helpers/emailValidator';
 import { passwordValidator } from '../../../helpers/passwordValidator';
 import Button from '../../../components/Button';
 import LogoText from '../../../components/LogoText';
+import { createUser } from '../AuthenticationService';
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' });
@@ -29,66 +28,6 @@ export default function RegisterScreen({ navigation }) {
     }
     createUser(email.value, password.value);
   };
-
-  function createUser(email, password) {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        console.log('User account created & signed in!');
-        console.log('UserCrednetial', userCredential.user);
-
-        const requestOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, password: password }),
-        };
-        try {
-          fetch(
-            'https://api.interactions.ics.unisg.ch/foodcoach/backend/user/register',
-            requestOptions,
-          )
-            .then(res => res.json())
-            .then(res => {
-              if (res.token) {
-                firestore()
-                  .collection('users')
-                  .doc(userCredential.user.uid)
-                  .set({
-                    email: email,
-                    token: res.token,
-                  });
-              } else {
-                firestore()
-                  .collection('users')
-                  .doc(userCredential.user.uid)
-                  .set({
-                    token: 'None',
-                  });
-              }
-            });
-        } catch (error) {
-          console.error(error);
-        }
-
-        userCredential.user.sendEmailVerification().then(() => {
-          console.log('Email verificiation sent');
-          alert('Bitte verifiziere deine Mail bei Gelegenheit.');
-        });
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('Diese Mail ist bereits in Verwendung.');
-          alert('Diese Mail ist bereits in Verwendung.');
-        }
-
-        if (error.code === 'auth/invalid-email') {
-          console.log('Die Mail ist ungültig.');
-          alert('Die Mail ist ungültig.');
-        }
-
-        console.error(error);
-      });
-  }
 
   return (
     <Background>

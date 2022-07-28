@@ -9,6 +9,7 @@ import Header from '../../../components/Header'
 import TextInput from '../../../components/TextInput'
 import Button from '../../../components/Button'
 import { emailValidator } from '../../../helpers/emailValidator'
+import { resetPassword } from '../AuthenticationService';
 
 export default function ResetPasswordScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
@@ -23,18 +24,7 @@ export default function ResetPasswordScreen({ navigation }) {
     navigation.navigate('LoginScreen')
   }
 
-  function resetPassword(email) {
-    auth()
-    .sendPasswordResetEmail(email)
-    .then(user => {
-      console.log("User:", user);
-      alert("Falls dieser Account existiert, haben wir ein Mail für das zurücksetzen des Passworts verschickt.");
-    })
-    .catch(error => {
-      console.error(error);
-      alert("Das zurücksetzen des Passworts ist derzeit nicht möglich.");
-    });
-  }
+ 
 
   return (
     <Background>

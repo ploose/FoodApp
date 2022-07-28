@@ -13,6 +13,7 @@ import { emailValidator } from '../../../helpers/emailValidator';
 import { passwordValidator } from '../../../helpers/passwordValidator';
 import LogoText from '../../../components/LogoText';
 import Paragraph from '../../../components/Paragraph';
+import { signInWithEmailAndPassword } from '../AuthenticationService';
 
 type Props = {};
 
@@ -28,18 +29,8 @@ export default function LoginScreen(props: Props) {
       setPassword({ ...password, error: passwordError });
       return;
     }
-    signInWithEmailAndPassword();
+    signInWithEmailAndPassword(email.value, password.value);
   };
-  function signInWithEmailAndPassword() {
-    auth()
-      .signInWithEmailAndPassword(email.value, password.value)
-      .then(() => {
-        console.log('Signed in!');
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
 
   return (
     <Background>
