@@ -7,7 +7,7 @@ cd ios && pod install
 ```
 
 
-Run this command to start the development server and to start your app on iOS simulator:
+# Run this command to start the development server and to start your app on iOS simulator:
 
 yarn run:ios
 
@@ -21,6 +21,7 @@ react-native start --reset-cache
 
 Alternative start:
 npx react-native run-android
+react-native run-android
 
 
 Run on physical device:
