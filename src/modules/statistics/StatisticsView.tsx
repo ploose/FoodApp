@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+// @ts-nocheck
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { LineChart, XAxis } from 'react-native-svg-charts';
 import { StyleSheet, View, Text, PanResponder, Dimensions } from 'react-native';
 import { colors, fonts } from '../../styles';
@@ -17,7 +18,7 @@ import Svg, {
 
 // Code based on https://github.com/JesperLekland/react-native-svg-charts-examples/blob/master/storybook/stories/interactive-chart/index.js
 
-const MyChart = props => {
+const MyChart = (props: any) => {
   const apx = (size = 0) => {
     let width = Dimensions.get('window').width;
     return (width / 750) * size;
@@ -31,12 +32,12 @@ const MyChart = props => {
     '08-31 15:13',
   ]);
   const [priceList, setPriceList] = useState([50, 130, 270, 350, 400]);
-  const size = useRef(dateList.length);
+  const size:MutableRefObject<number> = useRef(dateList.length);
   const totalChartWidth = apx(750);
   const totalChartHeight = apx(750 / 2);
 
-  const Decorator = ({ x, y, data }) => {
-    return data.map((value, index) => (
+  const Decorator = ({ x, y, data }:{x:any,y:any,data:any}) => {
+    return data.map((value: any, index: React.Key | null | undefined) => (
       <Circle
         key={index}
         cx={x(index)}
@@ -72,7 +73,7 @@ const MyChart = props => {
     }),
   );
 
-  const updatePosition = x => {
+  const updatePosition = (x: number) => {
     const YAxisWidth = apx(0); // HERE
     const x0 = apx(0); // x0 position
     const chartWidth = totalChartWidth - YAxisWidth - x0;
@@ -89,7 +90,7 @@ const MyChart = props => {
 
     // The selected coordinate x :
     // (x - x0)/ xDistance = value
-    let value = ((x - x0) / xDistance).toFixed(0);
+    let value:number = parseInt(((x - x0) / xDistance).toFixed(0));
     if (value >= size.current - 1) {
       value = size.current - 1; // Out of chart range, automatic correction
     }
@@ -97,50 +98,48 @@ const MyChart = props => {
     setPositionX(Number(value));
   };
 
-  const CustomGrid = ({ x, y, ticks }) => (
-    <G>
-      {// Horizontal grid
-      ticks.map(tick => (
-        <Line
-          key={tick}
-          x1="0%"
-          x2="100%"
-          y1={y(tick)}
-          y2={y(tick)}
-          stroke="#EEF3F6"
-        />
-      ))}
-      {// Vertical grid
-      priceList.map((_, index) => (
-        <Line
-          key={index.toString()}
-          y1="0%"
-          y2="100%"
-          x1={x(index)}
-          x2={x(index)}
-          stroke="#EEF3F6"
-        />
-      ))}
-    </G>
-  );
+  // const CustomGrid = ({ x, y, ticks }) => (
+  //   <G>
+  //     {// Horizontal grid
+  //     ticks.map((tick: React.Key | null | undefined) => (
+  //       <Line
+  //         key={tick}
+  //         x1="0%"
+  //         x2="100%"
+  //         y1={y(tick)}
+  //         y2={y(tick)}
+  //         stroke="#EEF3F6"
+  //       />
+  //     ))}
+  //     {// Vertical grid
+  //     priceList.map((_, index) => (
+  //       <Line
+  //         key={index.toString()}
+  //         y1="0%"
+  //         y2="100%"
+  //         x1={x(index)}
+  //         x2={x(index)}
+  //         stroke="#EEF3F6"
+  //       />
+  //     ))}
+  //   </G>
+  // );
 
-  const CustomLine = ({ line }) => (
+  const CustomLine = ({ line }:{line:any}) => (
     <Path key="line" d={line} stroke="white" strokeWidth={apx(6)} fill="none" />
   );
 
+// @ts-ignore
   const CustomGradient = () => (
     <Defs key="gradient">
       <LinearGradient id="gradient" x1="0" y="0%" x2="0%" y2="100%">
-        {/* <Stop offset="0%" stopColor="rgb(134, 65, 244)" /> */}
-        {/* <Stop offset="100%" stopColor="rgb(66, 194, 244)" /> */}
-
         <Stop offset="0%" stopColor="#FEBE18" stopOpacity={0} />
         <Stop offset="100%" stopColor="#FEBE18" stopOpacity={0} />
       </LinearGradient>
     </Defs>
   );
 
-  const Tooltip = ({ x, y, ticks }) => {
+  const Tooltip = ({ x, y, ticks }:{x:any,y:any,ticks:any}) => {
     if (positionX < 0) {
       return null;
     }
@@ -228,7 +227,7 @@ const MyChart = props => {
             contentInset={{ ...verticalContentInset }}
             svg={{ fill: 'url(#gradient)' }}
           >
-            <CustomLine />
+            <CustomLine line={undefined} />
             <Svg belowChart={true}>
               <View
                 style={{
@@ -285,8 +284,8 @@ const MyChart = props => {
             </Svg>
             {/* <CustomGrid /> */}
             <CustomGradient />
-            <Tooltip />
-            <Decorator />
+            <Tooltip x={undefined} y={undefined} ticks={undefined} />
+            <Decorator x={undefined} y={undefined} data={undefined} />
           </LineChart>
         </View>
 
@@ -306,7 +305,7 @@ const MyChart = props => {
         }}
         numberOfTicks={7}
         data={priceList}
-        formatLabel={(value, index) => dateList[value]}
+        formatLabel={(value: number, index: number) => dateList[value]}
         contentInset={{
           left: apx(126),
           right: apx(126),

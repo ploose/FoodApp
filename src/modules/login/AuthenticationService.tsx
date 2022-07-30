@@ -2,7 +2,7 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-export function createUser(email, password) {
+export function createUser(email:string, password:string) {
   auth()
     .createUserWithEmailAndPassword(email, password)
     .then(userCredential => {
@@ -59,7 +59,7 @@ export function createUser(email, password) {
     });
 }
 
-export function signInWithEmailAndPassword(email, password) {
+export function signInWithEmailAndPassword(email:string, password:string) {
   auth()
     .signInWithEmailAndPassword(email, password)
     .then(() => {
@@ -70,7 +70,7 @@ export function signInWithEmailAndPassword(email, password) {
     });
 }
 
-export function resetPassword(email) {
+export function resetPassword(email:string) {
   auth()
   .sendPasswordResetEmail(email)
   .then(user => {
@@ -82,3 +82,7 @@ export function resetPassword(email) {
     alert("Das zurücksetzen des Passworts ist derzeit nicht möglich.");
   });
 }
+function alert(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+

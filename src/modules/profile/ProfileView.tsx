@@ -12,32 +12,31 @@ let user = auth().currentUser;
 
 const logoutIcon = require('../../../assets/images/icons/logout.png');
 
-Stack = createStackNavigator();
+const Stack = createStackNavigator();
 
-function getCumulusData() {
-  try {
-    const text = functions().httpsCallable('testFunction');
+// function getCumulusData() {
+//   try {
+//     const text = functions().httpsCallable('testFunction');
 
-    text().then(result => {
-      console.log(result);
-    });
-  } catch (error) {
-    console.log(error);
-  }
-}
+//     text().then(result => {
+//       console.log(result);
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 //TODO: Update data
-function updateData() {
-  try {
-    const text = functions().httpsCallable('getCumulusData');
-    console.log(user.uid);
-    text({ uid: user.uid }).then(result => {
-      console.log(result);
-    });
-  } catch (error) {
-    console.log(error);
-  }
-}
+// function updateData() {
+//   try {
+//     const text = functions().httpsCallable('getCumulusData');
+//     text({ uid: user.uid }).then(result => {
+//       console.log(result);
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 function fetchBackendData() {
   const requestOptions = {
@@ -64,7 +63,7 @@ function logOut() {
     .then(() => console.log('User signed out!'));
 }
 
-function ProfilePage(props) {
+function ProfilePage(props: { navigation: { navigate: (arg0: string) => void; push: (arg0: string) => void; }; }) {
   return (
     <View style={styles.container}>
       <View style={styles.container}>
@@ -114,7 +113,7 @@ function ProfilePage(props) {
   );
 }
 
-export default function ProfileScreen(props) {
+export default function ProfileScreen(props: any) {
   return (
     <Stack.Navigator>
       <Stack.Screen

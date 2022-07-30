@@ -1,10 +1,16 @@
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import React from 'react';
 import { Image } from 'react-native-ui-lib';
 
-export function nutriScoreIamgeProvider(nutriScore) {
-
-  assetsUrl = '/src/assets'
+enum Nutriscore {
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
+  E = 'E'
+}
+export function nutriScoreIamgeProvider(nutriScore: Nutriscore) {
+  const assetsUrl = '/src/assets';
 
   switch (nutriScore) {
     case 'A':
@@ -58,4 +64,4 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: 80,
   },
-})
+});

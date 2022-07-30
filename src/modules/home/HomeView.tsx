@@ -6,17 +6,17 @@ import { fonts, colors } from '../../styles';
 import { Text } from '../../components/StyledText';
 import Purchase from '../../components/foodtracking/PurchaseListEntry';
 
-export default function HomeScreen({ isExtended, setIsExtended }) {
+export default function HomeScreen() {
   // TODO: Go tho the purchase
-  function goToPurchase() {
-    props.navigation.dispatch(state => {
-      const routes = [
-        ...state.routes,
-        { name: 'HistoryScreen' },
-        { name: 'PurchaseDetails', params: { test: 'r' } },
-      ];
-    });
-  }
+  // function goToPurchase() {
+  //   props.navigation.dispatch(state => {
+  //     const routes = [
+  //       ...state.routes,
+  //       { name: 'HistoryScreen' },
+  //       { name: 'PurchaseDetails', params: { test: 'r' } },
+  //     ];
+  //   });
+  // }
 
   return (
     <View style={styles.container}>
@@ -41,7 +41,7 @@ export default function HomeScreen({ isExtended, setIsExtended }) {
         />
       </View>
 
-      <View style={[styles.section, styles.sectionLarge]}></View>
+      <View style={styles.section}></View>
     </View>
   );
 }
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
     width: 180,
     height: 180,
     borderRadius: 180 / 2,
-    borderColor: colors.white,
   },
   scoreText: {
     color: colors.white,

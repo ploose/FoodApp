@@ -3,7 +3,7 @@ import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import AppView from './src/modules/AppViewContainer';
+import AppView from './src/modules/AppView';
 
 const usersCollection = firestore().collection('users')
 

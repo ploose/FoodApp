@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Image } from 'react-native';
+import { GestureResponderEvent, Image, TouchableOpacity } from 'react-native';
 
 import LoginScreen from '../login/loginScreen/LoginScreenView';
 import RegisterScreen from '../login/registerScreen/RegisterScreenView';
@@ -8,7 +8,9 @@ import StartScreen from '../login/startScreen/StartScreenView';
 
 import { colors, fonts } from '../../styles';
 
-const headerLeftComponent = props => {
+const headerLeftComponent = (props: {
+  onPress: ((event: GestureResponderEvent) => void) | undefined,
+}) => {
   return (
     <TouchableOpacity
       onPress={props.onPress}
@@ -21,7 +23,7 @@ const headerLeftComponent = props => {
         source={require('../../../assets/images/icons/arrow-back.png')}
         resizeMode="contain"
         style={{
-          height: 20,
+          height: 200,
         }}
       />
     </TouchableOpacity>

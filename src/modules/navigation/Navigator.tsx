@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Image } from 'react-native';
 import { useState, useEffect } from 'react';
-import auth from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { createStackNavigator } from '@react-navigation/stack';
 import StackNavigationDataNotAuth from './stackNavigationDataNotAuth';
 
 import BottomTabs from './MainTabNavigator';
 
-const RootStackScreen = ({ user }) =>
+const RootStackScreen = ({ user }: { user: any }) =>
   !user ? (
     <Stack.Navigator initialRouteName="StartScreen">
       {StackNavigationDataNotAuth.map((item, idx) => (
@@ -17,10 +17,7 @@ const RootStackScreen = ({ user }) =>
           component={item.component}
           options={{
             headerBackground: () => (
-              <Image
-                style={styles.headerImage}
-                source={item.headerBackground.source}
-              />
+              <Image source={item.headerBackground.source} />
             ),
             headerTitleStyle: item.headerTitleStyle,
             headerShown: false,
@@ -36,9 +33,9 @@ const Stack = createStackNavigator();
 
 export default function Navigator() {
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<FirebaseAuthTypes.User>();
 
-  function onAuthStateChanged(user) {
+  function onAuthStateChanged(user: any) {
     setUser(user);
     console.log('User!', user);
     if (initializing) setInitializing(false);
@@ -51,4 +48,3 @@ export default function Navigator() {
 
   return <RootStackScreen user={user} />;
 }
-

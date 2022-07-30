@@ -1,13 +1,14 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { createStackNavigator, Header } from '@react-navigation/stack';
-import { Image } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image, Platform, Text, View } from 'react-native';
 
 import tabNavigationData from './tabNavigationData';
+import { colors } from '../../styles';
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-export default function TabNavigation(props) {
+export default function TabNavigation() {
   return (
     <Tab.Navigator
       tabBarOptions={{ style: { height: Platform.OS === 'ios' ? 90 : 50 } }}
@@ -19,14 +20,11 @@ export default function TabNavigation(props) {
           component={item.component}
           options={{
             tabBarIcon: ({ focused }) => (
-              <View style={styles.tabBarItemContainer}>
+              <View>
                 <Image
                   resizeMode="contain"
                   source={item.icon}
-                  style={[
-                    styles.tabBarIcon,
-                    focused && styles.tabBarIconFocused,
-                  ]}
+                
                 />
               </View>
             ),

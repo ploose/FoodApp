@@ -10,8 +10,13 @@ import TextInput from '../../../components/TextInput'
 import Button from '../../../components/Button'
 import { emailValidator } from '../../../helpers/emailValidator'
 import { resetPassword } from '../AuthenticationService';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../navigation/ParamLists';
 
-export default function ResetPasswordScreen({ navigation }) {
+type resetPasswordScreenProp = StackNavigationProp<RootStackParamList, 'ResetPasswordScreen'>;
+
+export default function ResetPasswordScreen({ navigation }:{navigation:resetPasswordScreenProp}) {
+
   const [email, setEmail] = useState({ value: '', error: '' })
 
   const sendResetPasswordEmail = () => {
@@ -35,7 +40,7 @@ export default function ResetPasswordScreen({ navigation }) {
         label="Email"
         returnKeyType="done"
         value={email.value}
-        onChangeText={(text) => setEmail({ value: text, error: '' })}
+        onChangeText={(text:string) => setEmail({ value: text, error: '' })}
         error={!!email.error}
         errorText={email.error}
         autoCapitalize="none"
