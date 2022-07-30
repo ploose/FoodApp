@@ -1,10 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 
-import LoginScreen from '../login/loginScreen/LoginScreenViewContainer';
-import RegisterScreen from '../login/registerScreen/RegisterScreenViewContainer';
-import ResetPasswordScreen from '../login/resetPasswordScreen/ResetPasswordScreenViewContainer';
-import StartScreen from '../login/startScreen/StartScreenViewContainer';
+import LoginScreen from '../login/loginScreen/LoginScreenView';
+import RegisterScreen from '../login/registerScreen/RegisterScreenView';
+import ResetPasswordScreen from '../login/resetPasswordScreen/ResetPasswordScreenView';
+import StartScreen from '../login/startScreen/StartScreenView';
 
 import { colors, fonts } from '../../styles';
 

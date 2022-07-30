@@ -1,5 +1,6 @@
 // @flow
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
@@ -15,9 +16,7 @@ import LogoText from '../../../components/LogoText';
 import Paragraph from '../../../components/Paragraph';
 import { signInWithEmailAndPassword } from '../AuthenticationService';
 
-type Props = {};
-
-export default function LoginScreen(props: Props) {
+export default function LoginScreen(props: any) {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 
@@ -34,7 +33,7 @@ export default function LoginScreen(props: Props) {
 
   return (
     <Background>
-      <View style={styles.header}>
+      <View>
         <LogoText />
       </View>
       <View
@@ -49,23 +48,21 @@ export default function LoginScreen(props: Props) {
         label="Email"
         returnKeyType="next"
         value={email.value}
-        onChangeText={text => setEmail({ value: text, error: '' })}
+        onChangeText={(text: string) => setEmail({ value: text, error: '' })}
         error={!!email.error}
         errorText={email.error}
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
-        keyboardType="email-address"
-      />
+        keyboardType="email-address" description={undefined}      />
       <TextInput
         label="Passwort"
         returnKeyType="done"
         value={password.value}
-        onChangeText={text => setPassword({ value: text, error: '' })}
+        onChangeText={(text: string) => setPassword({ value: text, error: '' })}
         error={!!password.error}
         errorText={password.error}
-        secureTextEntry
-      />
+        secureTextEntry description={undefined}      />
       <View style={styles.forgotPassword}>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('ResetPasswordScreen')}
@@ -73,7 +70,7 @@ export default function LoginScreen(props: Props) {
           <Text style={styles.forgot}>Passwort vergessen?</Text>
         </TouchableOpacity>
       </View>
-      <Button mode="outlined" onPress={onLoginPressed}>
+      <Button mode="outlined" onPress={onLoginPressed} style={undefined}>
         Login
       </Button>
       <View style={styles.row}>
@@ -81,7 +78,7 @@ export default function LoginScreen(props: Props) {
         <TouchableOpacity
           onPress={() => props.navigation.navigate('RegisterScreen')}
         >
-          <Text style={styles.link}>Jetzt registrieren!</Text>
+          <Text style={styles.link}>Jetzt registrieren! </Text>
         </TouchableOpacity>
       </View>
     </Background>

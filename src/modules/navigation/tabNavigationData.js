@@ -1,7 +1,7 @@
-import HomeScreen from '../home/HomeViewContainer';
-import HistoryScreen from '../history/HistoryViewContainer';
-import StatisticsScreen from '../statistics/StatisticsViewContainer';
-import ProfileScreen from '../profile/ProfileViewContainer';
+import HomeScreen from '../home/HomeView';
+import HistoryScreen from '../history/HistoryView';
+import StatisticsScreen from '../statistics/StatisticsView';
+import ProfileScreen from '../profile/ProfileView';
 
 const iconHome = require('../../../assets/images/tabbar/home.png');
 const iconHistory = require('../../../assets/images/tabbar/history.png');

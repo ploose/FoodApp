@@ -1,7 +1,6 @@
 // @flow
 
-import { View } from 'react-native-ui-lib';
-
+import { View } from 'react-native';
 import React from 'react';
 import Background from '../../../components/Background';
 import Logo from '../../../components/Logo';
@@ -13,7 +12,7 @@ import { StyleSheet } from 'react-native';
 
 type Props = {};
 
-export default function StartScreen(props) {
+export default function StartScreen(props:any) {
   return (
     <Background>
       <View
@@ -33,14 +32,12 @@ export default function StartScreen(props) {
       >
         <Button
           mode="outlined"
-          onPress={() => props.navigation.navigate('LoginScreen')}
-        >
+          onPress={() => props.navigation.navigate('LoginScreen')} style={undefined}        >
           Login
         </Button>
         <Button
           mode="outlined"
-          onPress={() => props.navigation.navigate('RegisterScreen')}
-        >
+          onPress={() => props.navigation.navigate('RegisterScreen')} style={undefined}        >
           Registrieren
         </Button>
       </View>

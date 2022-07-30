@@ -1,11 +1,7 @@
-import { Provider } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
-import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
-import { colors } from './src/styles';
 import auth from '@react-native-firebase/auth';
-import { store, persistor } from './src/redux/store';
 import firestore from '@react-native-firebase/firestore';
 import AppView from './src/modules/AppViewContainer';
 
@@ -32,7 +28,7 @@ function LoginApp() {
   const [user, setUser] = useState();
 
   // Handle user state changes
-  function onAuthStateChanged(user) {
+  function onAuthStateChanged(user:any) {
     setUser(user);
     if (initializing) setInitializing(false);
   }
@@ -46,20 +42,9 @@ function LoginApp() {
   console.log(user);
 
   return (
-    <Provider store={store}>
       <NavigationContainer>
-      <PersistGate
-      loading={
-        <View style={styles.container}>
-          <ActivityIndicator color={colors.red} />
-        </View>
-      }
-      persistor={persistor}
-    >
-      <AppView />
-    </PersistGate>
+        <AppView />
       </NavigationContainer>
-    </Provider>
   );
 }
 
