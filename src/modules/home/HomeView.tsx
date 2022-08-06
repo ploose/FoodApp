@@ -5,6 +5,7 @@ import auth from '@react-native-firebase/auth';
 import { fonts, colors } from '../../styles';
 import { Text } from '../../components/StyledText';
 import Purchase from '../../components/foodtracking/PurchaseListEntry';
+import { Nutriscore } from '../../helpers/nutriScores';
 
 export default function HomeScreen() {
   // TODO: Go tho the purchase
@@ -37,7 +38,7 @@ export default function HomeScreen() {
           name={'Migros Altstätten'}
           date={'20.01.2022'}
           cost={'123.40'}
-          score={'C'}
+          score={Nutriscore.C}
         />
       </View>
 
@@ -96,7 +97,8 @@ const styles = StyleSheet.create({
   lastPurchaseSection: {
     width: '90%',
     marginTop: 20,
-    flex: 1,
+    height: '18%'
+    // flex: 1,
   },
   section: {
     flex: 1,

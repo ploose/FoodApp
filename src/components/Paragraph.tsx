@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Text } from 'react-native-paper'
 
-export default function Paragraph(props) {
+export default function Paragraph(props:any) {
   return <Text style={styles.text} {...props} />
 }
 
@@ -13,6 +13,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 12,
     alignSelf: 'center',
-    textAlign: 'center'
   },
 })

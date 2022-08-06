@@ -30,11 +30,13 @@ export default function StartScreen(props:any) {
       <View
         style={styles.buttons}
       >
+        {/* @ts-ignore */}
         <Button
           mode="outlined"
           onPress={() => props.navigation.navigate('LoginScreen')} style={undefined}        >
           Login
         </Button>
+        {/* @ts-ignore */}
         <Button
           mode="outlined"
           onPress={() => props.navigation.navigate('RegisterScreen')} style={undefined}        >

@@ -9,7 +9,7 @@ enum Nutriscore {
   D = 'D',
   E = 'E'
 }
-export function nutriScoreIamgeProvider(nutriScore: Nutriscore) {
+export function nutriScoreImageProvider(nutriScore: Nutriscore) {
   const assetsUrl = '/src/assets';
 
   switch (nutriScore) {
@@ -53,15 +53,17 @@ export function nutriScoreIamgeProvider(nutriScore: Nutriscore) {
       );
 
     default:
-      Alert.alert('NUMBER NOT FOUND');
+      Alert.alert('Nutriscore existiert nicht.');
   }
 }
 
 const styles = StyleSheet.create({
   nutriScore: {
     alignSelf: 'center',
-    width: 200,
+    width: '100%',
     resizeMode: 'contain',
-    height: 80,
+    height: 'auto',
+    aspectRatio: 1024/555,
+    // flex: 1,
   },
 });

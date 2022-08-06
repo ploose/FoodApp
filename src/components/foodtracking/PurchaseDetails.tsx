@@ -8,25 +8,24 @@ import { SwipeablePanel } from 'rn-swipeable-panel';
 
 import { colors } from '../../styles';
 import ProductDetails from './ProductDetails';
-import { nutriScoreIamgeProvider } from '../../helpers/nutriScoreImageProvider';
+import { nutriScoreImageProvider } from '../../helpers/nutriScoreImageProvider';
+import { Nutriscore } from '../../helpers/nutriScores';
 
-export default function PurchaseDetails(props) {
-  console.log('props', JSON.stringify(props.route.params));
+export default function PurchaseDetails(props: { route: { params: any } }) {
   let purchaseDetails = props.route.params;
-  console.log('props', props.route);
 
   let [SwipeablePanelActive, setSwipablePanelActive] = useState(false);
 
-  openPanel = msg => {
+  const openPanel = (msg: any) => {
     setSwipablePanelActive(true);
   };
-  closePanel = () => {
+  const closePanel = () => {
     setSwipablePanelActive(false);
   };
 
-  function getProductsArray(products) {
+  function getProductsArray(products: { [x: string]: any }) {
     let myArray = [];
-    for (element in products) {
+    for (const element in products) {
       products[element].id = element;
       myArray.push(products[element]);
     }
@@ -83,28 +82,20 @@ export default function PurchaseDetails(props) {
           </View>
         </View>
         <View style={styles.nutriScoreContainer}>
-          {nutriScoreIamgeProvider('B')}
+          {nutriScoreImageProvider(Nutriscore.B)}
         </View>
       </View>
       <View style={styles.lastPurchaseBoxSection3}>
-        <Text
-          style={[styles.lastPurchaseBoxSection3_Text, { flexBasis: '45%' }]}
-        >
+        <Text style={[styles.lastPurchaseBoxSection3_Text, { width: '45%' }]}>
           Produkt
         </Text>
-        <Text
-          style={[styles.lastPurchaseBoxSection3_Text, { flexBasis: '11%' }]}
-        >
+        <Text style={[styles.lastPurchaseBoxSection3_Text, { width: '12%' }]}>
           Menge
         </Text>
-        <Text
-          style={[styles.lastPurchaseBoxSection3_Text, { flexBasis: '17%' }]}
-        >
+        <Text style={[styles.lastPurchaseBoxSection3_Text, { width: '8%' }]}>
           Preis
         </Text>
-        <Text
-          style={[styles.lastPurchaseBoxSection3_Text, { flexBasis: '27%' }]}
-        >
+        <Text style={[styles.lastPurchaseBoxSection3_Text, { width: '20%' }]}>
           Bewertung
         </Text>
       </View>
@@ -113,7 +104,7 @@ export default function PurchaseDetails(props) {
           keyExtractor={item => item.id}
           data={getProductsArray(purchaseDetails.products)}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={this.openPanel}>
+            <TouchableOpacity onPress={openPanel}>
               <View>
                 <ProductPreview
                   id={item.id}
@@ -125,17 +116,17 @@ export default function PurchaseDetails(props) {
           )}
         />
       </View>
-
-      <View style={styles.lastPurchaseBoxSection}></View>
+      <View style={styles.lastPurchaseBoxSection} />
+      {/* @ts-ignore  - Due to SwipeablePanel being a js module and expecting no children prop*/}
       <SwipeablePanel
         fullWidth
         isActive={SwipeablePanelActive}
-        onClose={this.closePanel}
+        onClose={closePanel}
         onlySmall
         smallPanelHeight={600}
         showCloseButton
         closeOnTouchOutside
-        onPressCloseButton={this.closePanel}
+        onPressCloseButton={closePanel}
       >
         <ProductDetails />
       </SwipeablePanel>
@@ -149,31 +140,40 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  lastPurchaseBoxSection2: {
-    backgroundColor: colors.white,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    flexBasis: '20%',
-  },
+
   purchaseDetailsInfo: {
     flexBasis: '50%',
     padding: 5,
   },
-  lastPurchaseBoxSection4: {
+
+  lastPurchaseBoxSection: {
+    flexBasis: '5%',
+  },
+  lastPurchaseBoxSection2: {
     backgroundColor: colors.white,
     flex: 1,
-    flexDirection: 'column',
+    borderRadius: 5,
+    flexDirection: 'row',
     justifyContent: 'space-evenly',
-    flexBasis: '60%',
+    flexBasis: '20%',
   },
   lastPurchaseBoxSection3: {
     flexBasis: '5%',
     opacity: 1,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    borderRadius: 5,
+    justifyContent: 'space-between',
     paddingTop: 10,
+    flex: 1,
     marginHorizontal: 10,
+  },
+  lastPurchaseBoxSection4: {
+    backgroundColor: colors.white,
+    flex: 1,
+    borderRadius: 5,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    flexBasis: '70%',
   },
   lastPurchaseBoxSection3_Text: {
     color: colors.white,
@@ -194,12 +194,6 @@ const styles = StyleSheet.create({
   purchaseDetailsInfo_labelContainer_value: {
     fontSize: 12,
     flexBasis: '65%',
-  },
-  lastPurchaseBoxSection: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 5,
-    flexBasis: '40%',
   },
 
   nutriScoreContainer: {

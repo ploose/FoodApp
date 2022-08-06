@@ -54,7 +54,9 @@ export default function LoginScreen(props: any) {
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
-        keyboardType="email-address" description={undefined}      />
+        keyboardType="email-address"
+        description={undefined}
+      />
       <TextInput
         label="Passwort"
         returnKeyType="done"
@@ -62,7 +64,7 @@ export default function LoginScreen(props: any) {
         onChangeText={(text: string) => setPassword({ value: text, error: '' })}
         error={!!password.error}
         errorText={password.error}
-        secureTextEntry description={undefined}      />
+      />
       <View style={styles.forgotPassword}>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('ResetPasswordScreen')}
@@ -70,6 +72,7 @@ export default function LoginScreen(props: any) {
           <Text style={styles.forgot}>Passwort vergessen?</Text>
         </TouchableOpacity>
       </View>
+      {/* @ts-ignore */}
       <Button mode="outlined" onPress={onLoginPressed} style={undefined}>
         Login
       </Button>

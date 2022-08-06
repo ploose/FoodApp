@@ -3,7 +3,11 @@ import { Alert, StyleSheet } from 'react-native';
 import { colors } from '../../styles';
 import { View, Text, Image } from 'react-native-ui-lib';
 
-export default function ProductPreview(props) {
+export default function ProductPreview(props: {
+  id: string,
+  price: string,
+  quantity: string,
+}) {
   return (
     <View style={styles.productBox}>
       <Text style={styles.product}>{props.id}</Text>
@@ -28,21 +32,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
+    justifyContent: 'space-between',
   },
   product: {
-    flexBasis: '45%',
+    width: '45%',
   },
   quantity: {
-    flexBasis: '12%',
+    width: '12%',
   },
   price: {
-    flexBasis: '8%',
+    width: '8%',
   },
   nutriScore: {
-    alignSelf: 'center',
-    width: 110,
-    resizeMode: 'contain',
-    height: 45,
-    flexBasis: '35%',
+    aspectRatio: 1024 / 555,
+    width: '20%',
   },
 });

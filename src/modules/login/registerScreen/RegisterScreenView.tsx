@@ -63,8 +63,8 @@ export default function RegisterScreen({ navigation }:{navigation:registerScreen
         value={password.value}
         onChangeText={(text: string) => setPassword({ value: text, error: '' })}
         error={!!password.error}
-        errorText={password.error}
-        secureTextEntry description={undefined}      />
+        errorText={password.error}    />
+        {/* @ts-ignore */}
       <Button
         mode="outlined"
         onPress={onSignUpPressed}

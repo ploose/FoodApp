@@ -1,18 +1,18 @@
 import React from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert, Dimensions, StyleSheet } from 'react-native';
 import { colors } from '../../styles';
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib';
 import NutritionListEntry from './NutritionListEntry';
 
-export default function ProductDetails(props) {
-  openPanel = msg => {
-    setSwipablePanelActive(true);
-  };
-  closePanel = () => {
-    setSwipablePanelActive(false);
-  };
+export default function ProductDetails() {
+  // const openPanel = msg => {
+  //   setSwipablePanelActive(true);
+  // };
+  // const closePanel = () => {
+  //   setSwipablePanelActive(false);
+  // };
 
-  function getNutriScoreImage(nutriScore) {
+  function getNutriScoreImage(nutriScore: string) {
     switch (nutriScore) {
       case 'A':
         return (
@@ -70,13 +70,12 @@ export default function ProductDetails(props) {
         />
 
         <View style={styles.headerContainer_productInfo}>
-          <View style={styles.headerContainer_productInfo_textContainer}>
-            <Text style={{ fontWeight: 'bold' }}>
-              Kartoffelbrot mit Nüssen IP Suisse
-            </Text>
-            <Text style={{ fontSize: 13 }}>Grossbrot frisch</Text>
-            <Text style={{ fontSize: 13 }}>350g</Text>
-          </View>
+          <Text style={{ fontWeight: 'bold' }}>
+            Kartoffelbrot mit Nüssen IP Suisse
+          </Text>
+          <Text style={{ fontSize: 13 }}>Grossbrot frisch</Text>
+          <Text style={{ fontSize: 13 }}>350g</Text>
+
           <View style={styles.headerContainer_productInfo_nutriScore}>
             {getNutriScoreImage('A')}
           </View>
@@ -111,20 +110,19 @@ export default function ProductDetails(props) {
 const styles = StyleSheet.create({
   productInfoContainer: {
     backgroundColor: colors.primary,
-    flex: 1,
-    flexDirection: 'column',
+    // flex: 1,
+    // flexDirection: 'column',
   },
   headerContainer: {
     backgroundColor: colors.white,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    flexBasis: '60%',
+    width: '100%',
     padding: 10,
     height: 150,
   },
   headerContainer_image: {
-    flexBasis: '30%',
     flex: 1,
     resizeMode: 'contain',
     width: '100%',
@@ -133,26 +131,27 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   headerContainer_productInfo: {
-    flexBasis: '70%',
+    width: '70%',
   },
   nutritionInfoContainer: {
     backgroundColor: colors.white,
-    flex: 1,
+    // flex: 1,
     padding: 10,
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    flexBasis: '40%',
   },
   headerContainer_productInfo_nutriScore: {
     padding: 5,
-    flexBasis: '50%',
+    width: '50%',
     justifyContent: 'center',
-    flex: 1,
   },
   nutriScore: {
+    aspectRatio: 1024 / 555,
+    width: Dimensions.get('window').width / 4,
+    height: 'auto',
+    justifyContent: 'center',
+    // alignContent: 'center',
+    // alignItems: 'center',
     alignSelf: 'center',
-    width: 150,
-    resizeMode: 'contain',
-    height: 55,
   },
 });

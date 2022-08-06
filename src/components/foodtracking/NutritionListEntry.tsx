@@ -3,9 +3,13 @@ import { Alert, StyleSheet } from 'react-native';
 import { colors } from '../../styles';
 import { View, Text, Image } from 'react-native-ui-lib';
 
-export default function NutritionListEntry(props) {
-
-  function getNutritionColor(color) {
+export default function NutritionListEntry(props: {
+  color: string,
+  quantity: string | number,
+  name: string,
+  description: string,
+}) {
+  function getNutritionColor(color: string) {
     switch (color) {
       case 'red':
         return (

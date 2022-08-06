@@ -16,6 +16,7 @@ import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
+import { Nutriscore } from '../../helpers/nutriScores';
 
 const chartIcon = require('../../../assets/images/pages/chart.png');
 const historyIcon = require('../../../assets/images/pages/history.png');
@@ -168,7 +169,7 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
                 name={item.store}
                 date={item.date}
                 cost={item.total}
-                score={'A'}
+                score={Nutriscore.A}
               />
             </View>
           </TouchableOpacity>
@@ -243,5 +244,8 @@ const styles = StyleSheet.create({
   },
   purchaseView: {
     padding: 8,
+    flex: 1,
+    justifyContent: 'center',
+    resizeMode: 'contain'
   },
 });

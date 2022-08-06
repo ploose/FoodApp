@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
+import { Colors } from 'react-native-ui-lib/src/style/colors';
 
 import { colors, fonts } from '../styles';
 
@@ -13,7 +14,9 @@ function applyGeneralStyles({
   lineThrough,
   color,
   size,
-}) {
+}:any) {
+    console.log("bold", bold);
+    
   return [
     style && style,
     bold && styles.bold,
@@ -27,13 +30,19 @@ function applyGeneralStyles({
   ];
 }
 
-export function Text(props) {
+type Props = {
+  size: number;
+  color: Colors;
+
+}
+
+export function Text(props:any) {
   const finalStyle = [styles.default, ...applyGeneralStyles(props)];
 
   return <RNText {...props} style={finalStyle} />;
 }
 
-export function Title(props) {
+export function Title(props:any) {
   const finalStyle = [
     styles.default,
     styles.title,
@@ -43,7 +52,7 @@ export function Title(props) {
   return <RNText {...props} style={finalStyle} />;
 }
 
-export function Caption(props) {
+export function Caption(props:any) {
   const finalStyle = [
     styles.default,
     styles.caption,

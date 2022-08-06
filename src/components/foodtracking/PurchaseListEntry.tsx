@@ -1,10 +1,12 @@
 import React from 'react';
-import { Alert, StyleSheet } from 'react-native';
-import { colors } from '../../styles';
+import { Alert, Dimensions, StyleSheet } from 'react-native';
+import { colors, paddings } from '../../styles';
 import { View, Text, Image } from 'react-native-ui-lib';
 
-export default function Purchase(props) {
-  function getNutriScoreImage(nutriScore) {
+import { Nutriscore } from '../../helpers/nutriScores';
+
+export default function Purchase(props: { name: string; date: string; cost: string | number; score: Nutriscore; }) {
+  function getNutriScoreImage(nutriScore: Nutriscore) {
     switch (nutriScore) {
       case 'A':
         return (
@@ -53,15 +55,12 @@ export default function Purchase(props) {
   return (
     <View style={styles.lastPurchaseBox}>
       <View style={styles.lastPurchaseBoxSection}>
-        <View style={styles.logoSection}>
           <Image
             style={styles.logo}
             source={require('../../../assets/images/retailers/Migros_logo_small.png')}
           />
-        </View>
-        <View style={styles.retailerNameSection}>
           <Text style={styles.retailerName}>{props.name}</Text>
-        </View>
+
       </View>
 
       <View style={styles.lastPurchaseBoxSection2}>
@@ -84,27 +83,34 @@ const styles = StyleSheet.create({
     borderColor: colors.black,
     backgroundColor: colors.primary,
     borderWidth: 2,
-    flex: 1,
+    borderRadius: 5,
+    height: Dimensions.get('window').width/5,
   },
   lastPurchaseBoxSection: {
-    flex: 1,
     flexDirection: 'row',
-    padding: 5,
-    flexBasis: '40%',
+    padding: 10,
+    height: '50%',
+    width: '100%'
+  },
+  logo: {
+    aspectRatio: 4761/880,
+    alignSelf: 'center',
+    flex: 1
+
   },
   lastPurchaseBoxSection2: {
-    flex: 1,
     flexDirection: 'row',
     borderTopWidth: 2,
     justifyContent: 'space-evenly',
-    flexBasis: '60%',
+    height: '50%',
+    width: '100%'
+
   },
   dateContainer: {
     borderRightWidth: 2,
     padding: 5,
     justifyContent: 'center',
     flex: 1,
-    flexBasis: '33%',
   },
   date: {
     alignSelf: 'center',
@@ -112,7 +118,6 @@ const styles = StyleSheet.create({
   costContainer: {
     borderRightWidth: 2,
     padding: 5,
-    flexBasis: '33%',
     justifyContent: 'center',
     flex: 1,
   },
@@ -121,33 +126,24 @@ const styles = StyleSheet.create({
   },
   nutriScoreContainer: {
     padding: 5,
-    flexBasis: '33%',
     justifyContent: 'center',
     flex: 1,
   },
   nutriScore: {
+    aspectRatio: 1024/555,
     alignSelf: 'center',
-    width: 100,
-    resizeMode: 'contain',
-    height: 40,
-  },
-  logo: {
-    width: 100,
-    resizeMode: 'contain',
-    height: 20,
-  },
-  logoSection: {
     flex: 1,
-    flexBasis: '40%',
-    alignSelf: 'center',
-    paddingLeft: 5,
   },
   retailerNameSection: {
-    flexBasis: '60%',
-    flex: 1,
+    flex: 6,
     alignSelf: 'center',
   },
   retailerName: {
     fontWeight: 'bold',
+    alignSelf: 'center',
+    width: '50%',
+    flex: 2,
+    paddingLeft: '5%',
+    textAlign: 'left'
   },
 });
