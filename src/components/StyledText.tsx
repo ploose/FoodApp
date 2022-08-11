@@ -15,7 +15,6 @@ function applyGeneralStyles({
   color,
   size,
 }:any) {
-    console.log("bold", bold);
     
   return [
     style && style,

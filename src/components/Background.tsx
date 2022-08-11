@@ -7,10 +7,7 @@ import {
 import { theme } from '../core/theme';
 
 export default function Background({ children }:{children:any}) {
-  console.log("Children");
-  console.log(children);
-  
-  
+
   return (
     <ImageBackground
       source={require('../assets/background_dot.png')}

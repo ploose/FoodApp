@@ -1,3 +1,5 @@
+import { IPurchase } from "../../@types/PurchaseStorage.d";
+
 export type RootStackParamList = {
   LoginScreen: undefined,
   RegisterScreen: undefined,
@@ -14,5 +16,5 @@ export type RootTabParamList = {
 
 export type HistoryRootTabParamList = {
   HistoryView: undefined,
-  PurchaseDetails: undefined,
+  PurchaseDetails:IPurchase,
 };

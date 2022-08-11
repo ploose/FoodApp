@@ -3,24 +3,25 @@ import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+
 import AppView from './src/modules/AppView';
 
 const usersCollection = firestore().collection('users')
 
-function SignInAnonymously() {
-  auth()
-    .signInAnonymously()
-    .then(() => {
-      console.log('User signed in anonymously');
-    })
-    .catch(error => {
-      if (error.code === 'auth/operation-not-allowed') {
-        console.log('Enable anonymous in your firebase console.');
-      }
+// function SignInAnonymously() {
+//   auth()
+//     .signInAnonymously()
+//     .then(() => {
+//       Error.log('User signed in anonymously');
+//     })
+//     .catch(error => {
+//       if (error.code === 'auth/operation-not-allowed') {
+//         console.log('Enable anonymous in your firebase console.');
+//       }
 
-      console.error(error);
-    });
-}
+//       console.error(error);
+//     });
+// }
 
 function LoginApp() {
   // Set an initializing state whilst Firebase connects

@@ -2,13 +2,10 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-export function createUser(email:string, password:string) {
+export function createUser(email: string, password: string) {
   auth()
     .createUserWithEmailAndPassword(email, password)
     .then(userCredential => {
-      console.log('User account created & signed in!');
-      console.log('UserCrednetial', userCredential.user);
-
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -59,30 +56,29 @@ export function createUser(email:string, password:string) {
     });
 }
 
-export function signInWithEmailAndPassword(email:string, password:string) {
+export function signInWithEmailAndPassword(email: string, password: string) {
   auth()
     .signInWithEmailAndPassword(email, password)
     .then(() => {
-      console.log('Signed in!');
     })
     .catch(error => {
       console.error(error);
     });
 }
 
-export function resetPassword(email:string) {
+export function resetPassword(email: string) {
   auth()
-  .sendPasswordResetEmail(email)
-  .then(user => {
-    console.log("User:", user);
-    alert("Falls dieser Account existiert, haben wir ein Mail für das zurücksetzen des Passworts verschickt.");
-  })
-  .catch(error => {
-    console.error(error);
-    alert("Das zurücksetzen des Passworts ist derzeit nicht möglich.");
-  });
+    .sendPasswordResetEmail(email)
+    .then(user => {
+      alert(
+        'Falls dieser Account existiert, haben wir ein Mail für das zurücksetzen des Passworts verschickt.',
+      );
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Das zurücksetzen des Passworts ist derzeit nicht möglich.');
+    });
 }
 function alert(arg0: string) {
   throw new Error('Function not implemented.');
 }
-

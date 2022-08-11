@@ -2,13 +2,8 @@ import { Alert, StyleSheet } from 'react-native';
 import React from 'react';
 import { Image } from 'react-native-ui-lib';
 
-enum Nutriscore {
-  A = 'A',
-  B = 'B',
-  C = 'C',
-  D = 'D',
-  E = 'E'
-}
+import { Nutriscore } from './nutriScores';
+
 export function nutriScoreImageProvider(nutriScore: Nutriscore) {
   const assetsUrl = '/src/assets';
 

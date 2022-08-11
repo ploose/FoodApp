@@ -9,6 +9,8 @@ import { firebase } from '@react-native-firebase/auth';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const user = false;
+import PurchaseStorageProvider from '../../../src/context/PurchaseStorageContext';
+
 export default function BottomTabs() {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -16,45 +18,47 @@ export default function BottomTabs() {
     }
   });
   return (
-    <Tab.Navigator
-      tabBarOptions={{ style: { height: Platform.OS === 'ios' ? 90 : 60 } }}
-    >
-      {tabNavigationData.map((item, idx) => (
-        <Tab.Screen
-          key={`tab_item${idx + 1}`}
-          name={item.name}
-          component={item.component}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <View style={styles.tabBarItemContainer}>
-                <Image
-                  resizeMode="contain"
-                  source={item.icon}
-                  style={[
-                    styles.tabBarIcon,
-                    focused && styles.tabBarIconFocused,
-                  ]}
-                />
-              </View>
-            ),
-            tabBarLabel: ({ focused }) => (
-              <Text
-                style={{
-                  fontSize: 12,
-                  color: focused ? colors.primary : colors.gray,
-                  bottom: 4,
-                }}
-              >
-                {item.name}
-              </Text>
-            ),
-          }}
-        />
-      ))}
-      {/* <Tab.Screen
+    <PurchaseStorageProvider>
+      <Tab.Navigator
+        tabBarOptions={{ style: { height: Platform.OS === 'ios' ? 90 : 60 } }}
+      >
+        {tabNavigationData.map((item, idx) => (
+          <Tab.Screen
+            key={`tab_item${idx + 1}`}
+            name={item.name}
+            component={item.component}
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <View style={styles.tabBarItemContainer}>
+                  <Image
+                    resizeMode="contain"
+                    source={item.icon}
+                    style={[
+                      styles.tabBarIcon,
+                      focused && styles.tabBarIconFocused,
+                    ]}
+                  />
+                </View>
+              ),
+              tabBarLabel: ({ focused }) => (
+                <Text
+                  style={{
+                    fontSize: 12,
+                    color: focused ? colors.primary : colors.gray,
+                    bottom: 4,
+                  }}
+                >
+                  {item.name}
+                </Text>
+              ),
+            }}
+          />
+        ))}
+        {/* <Tab.Screen
         name={"Survey"}
         component={MultiStepSignUpSurvey}/> */}
-    </Tab.Navigator>
+      </Tab.Navigator>
+    </PurchaseStorageProvider>
   );
 }
 

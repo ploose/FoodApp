@@ -1,0 +1,236 @@
+[
+    {
+        "id": "137",
+        "date": "02.08.2022",
+        "time": "12:09:29",
+        "store": "MM St. Fiden",
+        "total": 5.65,
+        "products": {
+            "Alnatura Tomatensaft": {
+                "price": "1.20",
+                "quantity": "1"
+            },
+            "MBud Frischkäse": {
+                "price": "1.10",
+                "quantity": "1"
+            },
+            "Blévita mit Sesam": {
+                "price": "3.35",
+                "quantity": "1"
+            }
+        }
+    },
+    {
+        "id": "96",
+        "date": "02.08.2022",
+        "time": "15:08:49",
+        "store": "MM St. Fiden",
+        "total": 2.5,
+        "products": {
+            "Ice Tea Sim. Fresh Pea": {
+                "price": "1.30",
+                "quantity": "1"
+            },
+            "MClass Choc-Törtli": {
+                "price": "1.20",
+                "quantity": "1"
+            }
+        }
+    },
+    {
+        "id": "41",
+        "date": "03.08.2022",
+        "time": "18:17:52",
+        "store": "M Lachen",
+        "total": 31.4,
+        "products": {
+            "MClass Spargelspitzen": {
+                "price": "1.75",
+                "quantity": "1"
+            },
+            "Bio MClass Apfelmus": {
+                "price": "2.90",
+                "quantity": "1"
+            },
+            "Salsa Italiana Basilic": {
+                "price": "1.20",
+                "quantity": "1"
+            },
+            "MClass Cottage Cheese": {
+                "price": "1.65",
+                "quantity": "1"
+            },
+            "Toast 100% Vollkorn": {
+                "price": "2.10",
+                "quantity": "1"
+            },
+            "MClass ASC Rauchlachs": {
+                "price": "4.50",
+                "quantity": "1"
+            },
+            "Schweinsplätzli": {
+                "price": "8.05",
+                "quantity": "0.358"
+            },
+            "MClass Müesli Truffes": {
+                "price": "0.65",
+                "quantity": "1"
+            },
+            "Karotten": {
+                "price": "0.70",
+                "quantity": "0.350"
+            },
+            "Cherrytomaten am Zweig": {
+                "price": "3.60",
+                "quantity": "1"
+            },
+            "Eier Freiland 63g+": {
+                "price": "4.30",
+                "quantity": "1"
+            },
+            "CUM20x Pkt Karotten": {
+                "price": "0",
+                "quantity": "1"
+            }
+        }
+    },
+    {
+        "id": "15",
+        "date": "04.08.2022",
+        "time": "09:12:40",
+        "store": "MM St. Fiden",
+        "total": 2.95,
+        "products": {
+            "Birnweggli": {
+                "price": "2.95",
+                "quantity": "1"
+            }
+        }
+    },
+    {
+        "id": "16",
+        "date": "05.08.2022",
+        "time": "09:09:25",
+        "store": "MM St. Fiden",
+        "total": 3.5,
+        "products": {
+            "Schwingerbenz": {
+                "price": "2.20",
+                "quantity": "1"
+            },
+            "Branches Milk 42g": {
+                "price": "1.30",
+                "quantity": "1"
+            }
+        }
+    },
+    {
+        "id": "39",
+        "date": "05.08.2022",
+        "time": "12:11:56",
+        "store": "MM St. Fiden",
+        "total": 34.85,
+        "products": {
+            "Ananas Mango Erdbeer": {
+                "price": "4.90",
+                "quantity": "1"
+            },
+            "mesh lounge": {
+                "price": "29.95",
+                "quantity": "1"
+            }
+        }
+    },
+    {
+        "id": "86",
+        "date": "05.08.2022",
+        "time": "15:20:13",
+        "store": "MM St. Fiden",
+        "total": 4.2,
+        "products": {
+            "Ice Tea Sim. Fresh Pea": {
+                "price": "1.30",
+                "quantity": "1"
+            },
+            "MClass Amigos Milch": {
+                "price": "2.90",
+                "quantity": "1"
+            }
+        }
+    },
+    {
+        "id": "7",
+        "date": "06.08.2022",
+        "time": "08:21:40",
+        "store": "MM St. Fiden",
+        "total": 3.2,
+        "products": {
+            "Schwingerbenz": {
+                "price": "2.20",
+                "quantity": "1"
+            },
+            "MBud Caffè Macchiato": {
+                "price": "1.00",
+                "quantity": "1"
+            }
+        }
+    },
+    {
+        "id": "285",
+        "date": "06.08.2022",
+        "time": "13:10:51",
+        "store": "MM St. Fiden",
+        "total": 5.5,
+        "products": {
+            "Fleischkäse-Semmel": {
+                "price": "5.50",
+                "quantity": "1"
+            }
+        }
+    },
+    {
+        "id": "119",
+        "date": "06.08.2022",
+        "time": "16:00:48",
+        "store": "M Lachen",
+        "total": 17.7,
+        "products": {
+            "Nestlé Cini Minis": {
+                "price": "3.95",
+                "quantity": "1"
+            },
+            "MBud Margarine": {
+                "price": "2.20",
+                "quantity": "1"
+            },
+            "MBud Haushaltmehl": {
+                "price": "0.90",
+                "quantity": "1"
+            },
+            "Bio Randen gedämpft": {
+                "price": "3.05",
+                "quantity": "0.622"
+            },
+            "Valflora Vollrahm UHT": {
+                "price": "1.85",
+                "quantity": "1"
+            },
+            "Bio Backhefe frisch": {
+                "price": "0.50",
+                "quantity": "1"
+            },
+            "Bananen": {
+                "price": "1.85",
+                "quantity": "0.804"
+            },
+            "Bio Eier 4 Stück": {
+                "price": "3.40",
+                "quantity": "1"
+            },
+            "CUM20x Pkt Mehle": {
+                "price": "0",
+                "quantity": "1"
+            }
+        }
+    }
+]

@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, TouchableOpacity, FlatList } from 'react-native';
 import { useState } from 'react';
 import moment from 'moment';
@@ -7,7 +7,11 @@ import moment from 'moment';
 import { Purchase } from '../../components';
 import { colors } from '../../styles';
 import PurchaseDetails from '../../components/foodtracking/PurchaseDetails';
-
+import { PurchaseStorageContext } from '../../context/PurchaseStorageContext';
+import {
+  IPurchase,
+  PurchaseStorageContextType,
+} from '../../@types/PurchaseStorage.d';
 import {
   RootTabParamList,
   HistoryRootTabParamList,
@@ -17,14 +21,6 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import { Nutriscore } from '../../helpers/nutriScores';
-
-const chartIcon = require('../../../assets/images/pages/chart.png');
-const historyIcon = require('../../../assets/images/pages/history.png');
-const chatIcon = require('../../../assets/images/pages/chat.png');
-const galleryIcon = require('../../../assets/images/pages/gallery.png');
-const profileIcon = require('../../../assets/images/pages/profile.png');
-const loginIcon = require('../../../assets/images/pages/login.png');
-const blogIcon = require('../../../assets/images/pages/blog.png');
 
 function custom_sort(b: any, a: any) {
   return (
@@ -37,7 +33,11 @@ function custom_sort(b: any, a: any) {
   );
 }
 
+// const { purchases, updatePurchase } = React.useContext(PurchaseStorageContext) as PurchaseStorageContextType;
+
 function getPurchases() {
+  // console.log("Purchases", purchases);
+
   // const options = {
   //   method: 'GET',
   // };
@@ -57,7 +57,6 @@ function getPurchases() {
   }
   myArray.sort(custom_sort);
 
-  console.log(myArray);
   return myArray;
 }
 
@@ -67,100 +66,24 @@ type historyViewProp = StackNavigationProp<
 >;
 
 function HistoryView({ navigation }: { navigation: historyViewProp }) {
-  let purchases = getPurchases();
-  console.log(purchases);
-
-  const [entries, setEntries] = useState([
-    {
-      id: 1,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'D',
-      date: '20.03.2022',
-    },
-    {
-      id: 2,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'A',
-      date: '20.03.2022',
-    },
-    {
-      id: 3,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'D',
-      date: '20.03.2022',
-    },
-    {
-      id: 4,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'D',
-      date: '20.03.2022',
-    },
-    {
-      id: 5,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'D',
-      date: '20.03.2022',
-    },
-    {
-      id: 6,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'D',
-      date: '20.03.2022',
-    },
-    {
-      id: 7,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'D',
-      date: '20.03.2022',
-    },
-    {
-      id: 8,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'D',
-      date: '20.03.2022',
-    },
-    {
-      id: 9,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'D',
-      date: '20.03.2022',
-    },
-    {
-      id: 10,
-      name: 'Migros Lachen',
-      cost: 'CHF 23.30',
-      score: 'D',
-      date: '20.03.2022',
-    },
-  ]);
-  let [SwipeablePanelActive, setSwipablePanelActive] = useState(true);
-
-  const openPanel = (msg: string) => {
-    setSwipablePanelActive(true);
-  };
-  const closePanel = () => {
-    setSwipablePanelActive(false);
-  };
+  const context: PurchaseStorageContextType | null = useContext(
+    PurchaseStorageContext,
+  );
+  let purchases: IPurchase[];
+  if (!context) {
+    purchases = [];
+  } else {
+    purchases = context.purchases;
+  }
 
   let abc = true;
 
   return (
     <View>
-      {/* Change item.name in openpanel to pass the id which makes a db lookup */}
       <FlatList
         keyExtractor={item => item.time}
         data={purchases}
         renderItem={({ item }) => (
-          // <TouchableOpacity onPress={() => this.openPanel(item.name)}>
           <TouchableOpacity
             onPress={() => navigation.navigate('PurchaseDetails', item)}
           >
@@ -175,19 +98,6 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
           </TouchableOpacity>
         )}
       />
-
-      {/* <SwipeablePanel
-        fullWidth
-        isActive={SwipeablePanelActive}
-        onClose={this.closePanel}
-        openLarge
-        onPressCloseButton={this.closePanel}
-      >
-        <TouchableOpacity onPress={this.closePanel}>
-          <Text style={styles.modalHeaderCloseText}>X</Text>
-        </TouchableOpacity>
-        <PurchaseDetails purchaseId={2} />
-      </SwipeablePanel> */}
     </View>
   );
 }
@@ -246,6 +156,6 @@ const styles = StyleSheet.create({
     padding: 8,
     flex: 1,
     justifyContent: 'center',
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
 });
