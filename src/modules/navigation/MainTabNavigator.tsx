@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Text, View, Image, StyleSheet, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import { colors } from '../../styles';
 import tabNavigationData from './tabNavigationData';
 import { firebase } from '@react-native-firebase/auth';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-const user = false;
-import PurchaseStorageProvider from '../../../src/context/PurchaseStorageContext';
+
+import PurchaseStorageProvider, {
+
+} from '../../../src/context/PurchaseStorageContext';
 
 export default function BottomTabs() {
   firebase.auth().onAuthStateChanged(user => {
