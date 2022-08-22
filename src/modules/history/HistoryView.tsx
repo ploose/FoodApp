@@ -62,7 +62,7 @@ function getPurchases() {
 
 type historyViewProp = StackNavigationProp<
   HistoryRootTabParamList,
-  'HistoryView'
+  'HistoryView',
 >;
 
 function HistoryView({ navigation }: { navigation: historyViewProp }) {
@@ -114,7 +114,14 @@ export default function HistoryScreen({
       <Stack.Screen
         name="HistoryView"
         component={HistoryView}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: colors.primary
+          },
+          headerTintColor: '#fff',
+          title: 'Verlauf',
+        }}
       />
       <Stack.Screen
         name="PurchaseDetails"
