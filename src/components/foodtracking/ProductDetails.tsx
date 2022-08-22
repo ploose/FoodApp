@@ -1,62 +1,20 @@
 import React from 'react';
-import { Alert, Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { colors } from '../../styles';
-import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib';
+import { View, Text, Image } from 'react-native-ui-lib';
 import NutritionListEntry from './NutritionListEntry';
 
-export default function ProductDetails() {
-  // const openPanel = msg => {
-  //   setSwipablePanelActive(true);
-  // };
-  // const closePanel = () => {
-  //   setSwipablePanelActive(false);
-  // };
+import { nutriScoreImageProvider } from '../../helpers/nutriScoreImageProvider';
+import { Nutriscore } from '../../helpers/nutriScores';
+import { IProduct } from '../../@types/PurchaseStorage.d';
 
-  function getNutriScoreImage(nutriScore: string) {
-    switch (nutriScore) {
-      case 'A':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/A.png')}
-            style={styles.nutriScore}
-          />
-        );
+type props = {
+  product: IProduct
+}
 
-      case 'B':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/B.png')}
-            style={styles.nutriScore}
-          />
-        );
+export default function ProductDetails(props:props) {
 
-      case 'C':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/C.png')}
-            style={styles.nutriScore}
-          />
-        );
-
-      case 'D':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/D.png')}
-            style={styles.nutriScore}
-          />
-        );
-      case 'E':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/E.png')}
-            style={styles.nutriScore}
-          />
-        );
-
-      default:
-        Alert.alert('NUMBER NOT FOUND');
-    }
-  }
+  const product = props.product;
 
   return (
     <View style={styles.productInfoContainer}>
@@ -71,37 +29,55 @@ export default function ProductDetails() {
 
         <View style={styles.headerContainer_productInfo}>
           <Text style={{ fontWeight: 'bold' }}>
-            Kartoffelbrot mit Nüssen IP Suisse
+            {product.id}
           </Text>
-          <Text style={{ fontSize: 13 }}>Grossbrot frisch</Text>
-          <Text style={{ fontSize: 13 }}>350g</Text>
+          <Text style={{ fontSize: 13 }}>Menge: {product.quantity}</Text>
+          {/* <Text style={{ fontSize: 13 }}></Text> */}
 
           <View style={styles.headerContainer_productInfo_nutriScore}>
-            {getNutriScoreImage('A')}
+            {nutriScoreImageProvider(Nutriscore.A)}
           </View>
         </View>
       </View>
 
       <View style={styles.nutritionInfoContainer}>
-        <Text style={{ fontWeight: 'bold' }}>Nutrition per 100g</Text>
+        <Text style={{ fontWeight: 'bold' }}>Nährwerte pro 100g</Text>
         <NutritionListEntry
           color={'green'}
           quantity={'5.6g'}
           name={'Fett'}
-          description={'Mittlere Menge'}
+          description={'Kleine Menge'}
         />
         <NutritionListEntry
           color={'red'}
           quantity={'5.6g'}
-          name={'Fett'}
-          description={'Mittlere Menge'}
+          name={'Kohlenhydrate'}
+          description={'Hohe Menge'}
         />
         <NutritionListEntry
+          color={'green'}
+          quantity={'5.6g'}
+          name={'Ballaststoffe'}
+          description={'Kleine Menge'}
+        />
+            <NutritionListEntry
           color={'yellow'}
           quantity={'5.6g'}
-          name={'Fett'}
+          name={'Eiweiss'}
           description={'Mittlere Menge'}
         />
+            <NutritionListEntry
+          color={'red'}
+          quantity={'5.6g'}
+          name={'Salz'}
+          description={'Hohe Menge'}
+        />
+      </View>
+
+      <View style={styles.nutritionInfoContainer}>
+        <Text style={{ fontWeight: 'bold' }}>Inhaltsstoffe</Text>
+        <Text>WEIZENmehl*, Wasser, BAUMNÜSSE 14%, ROGGENmehl* 7%, Kartoffelflocken* 5%, Hefe, WEIZENprotein, Kochsalz jodiert, Sonnenblumenöl, Zucker, GERSTENmalzmehl, Kartoffelstärke, Mehlbehandlungsmittel: Ascorbinsäure.
+          * in IP-SUISSE Qualität</Text>
       </View>
     </View>
   );
@@ -110,8 +86,6 @@ export default function ProductDetails() {
 const styles = StyleSheet.create({
   productInfoContainer: {
     backgroundColor: colors.primary,
-    // flex: 1,
-    // flexDirection: 'column',
   },
   headerContainer: {
     backgroundColor: colors.white,
@@ -127,7 +101,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     width: '100%',
     transform: [{ scale: 1.25 }],
-    height: undefined,
     aspectRatio: 1,
   },
   headerContainer_productInfo: {
@@ -135,7 +108,6 @@ const styles = StyleSheet.create({
   },
   nutritionInfoContainer: {
     backgroundColor: colors.white,
-    // flex: 1,
     padding: 10,
     flexDirection: 'column',
     justifyContent: 'space-evenly',
@@ -143,15 +115,14 @@ const styles = StyleSheet.create({
   headerContainer_productInfo_nutriScore: {
     padding: 5,
     width: '50%',
-    justifyContent: 'center',
+    alignContent: 'center',
+    
   },
   nutriScore: {
     aspectRatio: 1024 / 555,
     width: Dimensions.get('window').width / 4,
     height: 'auto',
     justifyContent: 'center',
-    // alignContent: 'center',
-    // alignItems: 'center',
     alignSelf: 'center',
   },
 });

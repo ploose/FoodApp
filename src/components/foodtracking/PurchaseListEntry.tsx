@@ -5,7 +5,7 @@ import { View, Text, Image } from 'react-native-ui-lib';
 
 import { Nutriscore } from '../../helpers/nutriScores';
 
-export default function Purchase(props: { name: string; date: string; cost: string | number; score: Nutriscore; }) {
+export default function Purchase(props: { name: string; date: string; cost: string; score: Nutriscore; }) {
   function getNutriScoreImage(nutriScore: Nutriscore) {
     switch (nutriScore) {
       case 'A':
@@ -68,7 +68,7 @@ export default function Purchase(props: { name: string; date: string; cost: stri
           <Text style={styles.date}>{props.date}</Text>
         </View>
         <View style={styles.costContainer}>
-          <Text style={styles.cost}>CHF {props.cost}</Text>
+          <Text style={styles.cost}>CHF {parseFloat(props.cost).toFixed(2)}</Text>
         </View>
         <View style={styles.nutriScoreContainer}>
           {getNutriScoreImage(props.score)}

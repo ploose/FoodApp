@@ -10,13 +10,18 @@ import { colors } from '../../styles';
 import ProductDetails from './ProductDetails';
 import { nutriScoreImageProvider } from '../../helpers/nutriScoreImageProvider';
 import { Nutriscore } from '../../helpers/nutriScores';
+import { IProduct, IPurchase } from '../../@types/PurchaseStorage.d';
 
-export default function PurchaseDetails(props: { route: { params: any } }) {
+export default function PurchaseDetails(props: { route: { params: IPurchase } }) {
   let purchaseDetails = props.route.params;
 
   let [SwipeablePanelActive, setSwipablePanelActive] = useState(false);
+  let [PanelProduct, setPanelProduct] = useState<IProduct | undefined>();
 
-  const openPanel = (msg: any) => {
+  console.log("Params", purchaseDetails);
+  
+  const openPanel:any = (product: IProduct) => {
+    setPanelProduct(product)
     setSwipablePanelActive(true);
   };
   const closePanel = () => {
@@ -104,7 +109,7 @@ export default function PurchaseDetails(props: { route: { params: any } }) {
           keyExtractor={item => item.id}
           data={getProductsArray(purchaseDetails.products)}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={openPanel}>
+            <TouchableOpacity onPress={() => openPanel(item)}>
               <View>
                 <ProductPreview
                   id={item.id}
@@ -122,13 +127,17 @@ export default function PurchaseDetails(props: { route: { params: any } }) {
         fullWidth
         isActive={SwipeablePanelActive}
         onClose={closePanel}
-        onlySmall
-        smallPanelHeight={600}
+        // onlyLarge
+        // smallPanelHeight={400}
+        // panelHeight={200}
+        deviceHeight={50}
         showCloseButton
         closeOnTouchOutside
         onPressCloseButton={closePanel}
+        style={{height: '80%'}}
       >
-        <ProductDetails />
+        <ProductDetails
+        product={PanelProduct} />
       </SwipeablePanel>
     </View>
   );
@@ -152,10 +161,11 @@ const styles = StyleSheet.create({
   lastPurchaseBoxSection2: {
     backgroundColor: colors.white,
     flex: 1,
-    borderRadius: 5,
+    borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     flexBasis: '20%',
+    borderWidth: 2,
   },
   lastPurchaseBoxSection3: {
     flexBasis: '5%',
@@ -170,7 +180,8 @@ const styles = StyleSheet.create({
   lastPurchaseBoxSection4: {
     backgroundColor: colors.white,
     flex: 1,
-    borderRadius: 5,
+    borderRadius: 10,
+    borderWidth: 2,
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     flexBasis: '70%',
