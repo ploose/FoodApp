@@ -4,12 +4,13 @@ export interface IPurchase {
   time:     string;
   store:    string;
   products: { [key: string]: IProduct };
-  total:    number;
+  total:    string;
 }
 
 export interface IProduct {
     price:    string;
     quantity: string;
+    id: string;
 }
 
 export type PurchaseStorageContextType = {
