@@ -47,7 +47,7 @@ function StatisticsPieChart() {
         animate={{ easing: 'exp' }}
         data={graphicData}
         width={250}
-        height={250}
+        height={210}
         colorScale={Object.values(CategoriesColor)}
         innerRadius={50}
         radius={100}

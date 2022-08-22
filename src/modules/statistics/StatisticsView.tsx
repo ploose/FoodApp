@@ -33,6 +33,7 @@ import { black } from 'react-native-paper/lib/typescript/styles/colors';
 import CategoryPanel from './CategoryPanel';
 import { colors, fonts } from '../../styles';
 import { categories } from './Categories';
+import { color } from 'react-native-reanimated';
 
 
 // Code based on https://github.com/JesperLekland/react-native-svg-charts-examples/blob/master/storybook/stories/interactive-chart/index.js
@@ -49,22 +50,24 @@ export default function Statistics() {
   }
   return (
   
-   
+  
       <ScrollView keyboardShouldPersistTaps="handled">
         
         <View style={styles.container}>
           <View style={styles.chartContainer}>
-            <Text style={{ color: colors.white }}>
+            
+            <View style={styles.chart}>
+              <Text style={styles.tileTitles}>
               Deine letzten 10 Einkäufe
             </Text>
-            <View style={styles.chart}>
               <StatisticsChart purchases={purchases} />
             </View>
           </View>
           <View style={styles.piechartContainer}>
-            <Text>Kategorien</Text>
+            
 
             <View style={styles.piechart}>
+            <Text style={styles.tileTitles}>Kategorien</Text>
               <StatisticsPieChart />
               <View style={styles.categoryPanelsContainer}>
                 <FlatList
@@ -115,6 +118,8 @@ export default function StatisticsScreen({
           title: 'Statistik',
           headerStyle: {
             backgroundColor: colors.primary,
+            // borderRadius: 2, borderColor: colors.black, borderWidth: 2,
+            // elevation: 1
           },
           headerTintColor: '#fff',
         }}
@@ -132,33 +137,35 @@ const styles = StyleSheet.create({
     // borderRadius: 20,
     // height: 1000
   },
+  tileTitles: {
+    color: colors.black, paddingLeft: 15, padding: 5, fontSize: 14, fontWeight: 'bold'
+  },
   chart: {
-    borderWidth: 2,
-    borderRadius: 5,
+    // borderWidth: 2,
+    // borderRadius: 5,
+    // backgroundColor: colors.white
   },
   chartContainer: {
     // margin: 8,
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    borderColor: colors.black,
+    borderWidth: 2,
+    marginTop: 5
   },
   piechartContainer: {
     // margin: 8,
+   
   },
   piechart: {
     borderWidth: 2,
-    borderRadius: 5,
-    // height: '60%',
+    borderRadius: 10,
     shadowColor: '#fff',
     // shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 60,
-    backgroundColor: colors.white,
-  },
-  piechart2: {
-    borderWidth: 2,
-    // backgroundColor: '#000',
-    borderRadius: 5,
-    height: 5,
-    // height: '60%',
+    paddingBottom: 5,
+    backgroundColor: colors.white, marginTop: 10, marginBottom: 5
   },
   categoryPanelsContainer: {
     flex: 1,

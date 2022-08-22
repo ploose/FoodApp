@@ -205,18 +205,25 @@ export default function StatisticsChart(props:props) {
   return (
     <View
       style={{
-        backgroundColor: '#fff',
-        alignItems: 'stretch',
+        // backgroundColor: '#fff',
+        // alignItems: 'stretch',
+        // borderRadius: 10,
         width: '100%',
+        // borderWidth: 2,
       }}
     >
       <View
         style={{
           flexDirection: 'row',
-          padding: 20,
+          // alignSelf:'center',
+          // alignContent: 'center',
+          // alignItems: 'center',
+          // justifyContent: 'center',
+          paddingHorizontal: 20,
           width: '100%',
+          // backgroundColor: colors.secondary,
           height: apx(500),
-          alignSelf: 'stretch',
+          // alignSelf: 'center',
         }}
       >
         <View style={{ flex: 1 }} {...panResponder.current.panHandlers}>
