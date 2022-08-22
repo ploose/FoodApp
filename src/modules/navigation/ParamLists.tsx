@@ -18,3 +18,7 @@ export type HistoryRootTabParamList = {
   HistoryView: undefined,
   PurchaseDetails:IPurchase,
 };
+
+export type StatisticsRootTabParamList = {
+  StatisticsView: undefined
+};

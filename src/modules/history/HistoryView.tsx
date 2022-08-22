@@ -76,8 +76,6 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
     purchases = context.purchases;
   }
 
-  let abc = true;
-
   return (
     <View>
       <FlatList
