@@ -11,16 +11,12 @@ function custom_sort(b: any, a: any) {
     );
   }
 
-export function getPurchases() {
- 
-    const jsonFile = require('./data.json');
-    let myArray = [];
-    for (const element in jsonFile) {
-      jsonFile[element].id = element;
-      myArray.push(jsonFile[element]);
+ export function getProductsArray(products: { [x: string]: any }) {
+    let productsArray = [];
+    for (const element in products) {
+      products[element].id = element;
+      productsArray.push(products[element]);
     }
-    myArray.sort(custom_sort);
-  
-    console.log(myArray);
-    return myArray;
+    productsArray.pop()
+    return productsArray;
   }
