@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     flexBasis: '20%',
     borderWidth: 2,
+    marginHorizontal: 8,
   },
   lastPurchaseBoxSection3: {
     flexBasis: '5%',
@@ -185,6 +186,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     flexBasis: '70%',
+    marginHorizontal: 8,
   },
   lastPurchaseBoxSection3_Text: {
     color: colors.white,
