@@ -1,12 +1,10 @@
+// @ts-nocheck -> Experimental Feature, will probably be changed to victorychart
 import Svg, {
-  Circle,
   Defs,
-  G,
   LinearGradient,
   Path,
   Rect,
-  Stop,
-  Text as SvgText,
+  Stop
 } from 'react-native-svg';
 import { colors } from '../../styles';
 import React, { MutableRefObject, useRef, useState } from 'react';
@@ -16,14 +14,13 @@ import { IPurchase } from '../../@types/PurchaseStorage.d';
 import { extractDate, extractTotal } from '../../helpers/extractor';
 
 type props = {
-  purchases: IPurchase[]
-}
-export default function StatisticsChart(props:props) {
-
+  purchases: IPurchase[],
+};
+// @ts-ignore
+export default function StatisticsChart(props: props) {
   let purchases = props.purchases;
   const dates = extractDate(purchases);
   const totals = extractTotal(purchases);
-  
 
   const apx = (size = 0) => {
     let width = Dimensions.get('window').width;
@@ -35,19 +32,6 @@ export default function StatisticsChart(props:props) {
   const size: MutableRefObject<number> = useRef(dateList.length);
   const totalChartWidth = apx(750);
   const totalChartHeight = apx(750 / 2);
-
-  const Decorator = ({ x, y, data }: { x: any, y: any, data: any }) => {
-    return data.map((value: any, index: React.Key | null | undefined) => (
-      <Circle
-        key={index}
-        cx={x(index)}
-        cy={y(value)}
-        r={4}
-        stroke={'rgb(134, 65, 244)'}
-        fill={'white'}
-      />
-    ));
-  };
 
   const [positionX, setPositionX] = useState(-1); // The currently selected X coordinate position
 
@@ -74,7 +58,7 @@ export default function StatisticsChart(props:props) {
   );
 
   const updatePosition = (x: number) => {
-    const YAxisWidth = apx(0); // HERE
+    const YAxisWidth = apx(0);
     const x0 = apx(0); // x0 position
     const chartWidth = totalChartWidth - YAxisWidth - x0;
     const xN = x0 + chartWidth; //xN position
@@ -85,11 +69,6 @@ export default function StatisticsChart(props:props) {
     if (x >= xN) {
       x = xN;
     }
-
-    // console.log((x - x0) )
-
-    // The selected coordinate x :
-    // (x - x0)/ xDistance = value
     let value: number = parseInt(((x - x0) / xDistance).toFixed(0));
     if (value >= size.current - 1) {
       value = size.current - 1; // Out of chart range, automatic correction
@@ -98,33 +77,6 @@ export default function StatisticsChart(props:props) {
     setPositionX(Number(value));
   };
 
-  // const CustomGrid = ({ x, y, ticks }) => (
-  //   <G>
-  //     {// Horizontal grid
-  //     ticks.map((tick: React.Key | null | undefined) => (
-  //       <Line
-  //         key={tick}
-  //         x1="0%"
-  //         x2="100%"
-  //         y1={y(tick)}
-  //         y2={y(tick)}
-  //         stroke="#EEF3F6"
-  //       />
-  //     ))}
-  //     {// Vertical grid
-  //     priceList.map((_, index) => (
-  //       <Line
-  //         key={index.toString()}
-  //         y1="0%"
-  //         y2="100%"
-  //         x1={x(index)}
-  //         x2={x(index)}
-  //         stroke="#EEF3F6"
-  //       />
-  //     ))}
-  //   </G>
-  // );
-
   const CustomLine = ({ line }: { line: any }) => (
     <Path key="line" d={line} stroke="white" strokeWidth={apx(6)} fill="none" />
   );
@@ -132,63 +84,12 @@ export default function StatisticsChart(props:props) {
   // @ts-ignore
   const CustomGradient = () => (
     <Defs key="gradient">
-      <LinearGradient id="gradient" x1="0" y="0%" x2="0%" y2="100%">
+      <LinearGradient id="gradient" x1="0" y1="0%" x2="0%" y2="100%">
         <Stop offset="0%" stopColor="#FEBE18" stopOpacity={0} />
         <Stop offset="100%" stopColor="#FEBE18" stopOpacity={0} />
       </LinearGradient>
     </Defs>
   );
-
-  const Tooltip = ({ x, y, ticks }: { x: any, y: any, ticks: any }) => {
-    if (positionX < 0) {
-      return null;
-    }
-
-    const date = dateList[positionX];
-
-    return (
-      <G x={x(positionX)} key="tooltip">
-        <G
-          x={positionX > size.current / 2 ? -apx(300 + 10) : apx(10)}
-          y={y(priceList[positionX]) - apx(10)}
-        >
-          <Rect
-            y={-apx(24 + 24 + 20) / 2}
-            rx={apx(12)} // borderRadius
-            ry={apx(12)} // borderRadius
-            width={apx(300)}
-            height={apx(96)}
-            stroke="rgba(254, 190, 24, 0.27)"
-            fill="rgba(255, 255, 255, 0.8)"
-          />
-
-          <SvgText x={apx(20)} fill="#617485" opacity={0.65} fontSize={apx(24)}>
-            Datum: {date}
-          </SvgText>
-          <SvgText
-            x={apx(20)}
-            y={apx(24 + 20)}
-            fontSize={apx(24)}
-            fontWeight="bold"
-            fill="#617485"
-          >
-            Nutriscore: {parseFloat(priceList[positionX]).toFixed(2)}
-          </SvgText>
-          
-        </G>
-
-        {/* <G x={x}>
-          <Circle
-            cy={y(priceList[positionX])}
-            r={apx(20 / 2)}
-            stroke="#fff"
-            strokeWidth={apx(2)}
-            fill="#FEBE18"
-          />
-        </G> */}
-      </G>
-    );
-  };
 
   const verticalContentInset = {
     top: apx(40),
@@ -205,11 +106,7 @@ export default function StatisticsChart(props:props) {
   return (
     <View
       style={{
-        // backgroundColor: '#fff',
-        // alignItems: 'stretch',
-        // borderRadius: 10,
         width: '100%',
-        // borderWidth: 2,
       }}
     >
       <View
@@ -217,7 +114,6 @@ export default function StatisticsChart(props:props) {
           flexDirection: 'row',
           paddingHorizontal: 20,
           width: '100%',
-          // backgroundColor: colors.secondary,
           height: apx(500),
         }}
       >
@@ -225,8 +121,6 @@ export default function StatisticsChart(props:props) {
           <LineChart
             style={{ flex: 1 }}
             data={priceList}
-            // curve={shape.curveNatural}
-            // curve={shape.curveMonotoneX}
             contentInset={{ ...verticalContentInset }}
             svg={{ fill: 'url(#gradient)' }}
           >
@@ -285,44 +179,13 @@ export default function StatisticsChart(props:props) {
                 fill={colors.nutriScore_E}
               />
             </Svg>
-            {/* <CustomGrid /> */}
             <CustomGradient />
-            {/* <Tooltip x={undefined} y={undefined} ticks={undefined} /> */}
-            {/* <Decorator x={undefined} y={undefined} data={undefined} /> */}
           </LineChart>
         </View>
-
-        {/* <YAxis
-          style={{ width: apx(130) }}
-          data={priceList}
-          contentInset={verticalContentInset}
-          svg={{ fontSize: apx(20), fill: '#617485' }}
-        /> */}
       </View>
-      {/* <XAxis
-        style={{
-          alignSelf: 'stretch',
-          // marginTop: apx(57),
-          width: apx(750),
-          height: apx(60),
-        }}
-        data={priceList}
-        formatLabel={(value: number, index: number) => dateList[value]}
-        contentInset={{
-          left: apx(126),
-          right: apx(126),
-        }}
-        svg={{
-          fontSize: apx(20),
-          fill: '#617485',
-          y: apx(0),
-          // originY: 30,
-        }}
-      /> */}
     </View>
   );
-};
-
+}
 
 const styles = StyleSheet.create({
   graphLetter: {

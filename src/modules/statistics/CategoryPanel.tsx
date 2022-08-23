@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
 import { View, Text, Image } from 'react-native-ui-lib';
 import { Float } from 'react-native/Libraries/Types/CodegenTypes';
 
 import { colors } from '../../styles';
+import { CategoriesColor } from './Categories';
 
 export type CategoryPanelProps = {
-  bandColor: string,
-  logo: typeof Image,
+  color: CategoriesColor,
+  logo: ReactNode,
   categoryName: string,
   percent: number,
   total: Float,
 };
 
 export default function CategoryPanel({
-  bandColor,
+  color,
   logo,
   categoryName,
   percent,
@@ -22,7 +23,7 @@ export default function CategoryPanel({
 }: CategoryPanelProps) {
   return (
     <View style={styles.container}>
-      <View style={[styles.band, { backgroundColor: bandColor }]} />
+      <View style={[styles.band, { backgroundColor: color }]} />
       <View style={styles.content}>
         <View style={styles.topRow}>
           <View style={styles.logo}>{logo}</View>

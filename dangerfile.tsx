@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { markdown, message, danger, fail, warn } from 'danger';
-import includes from 'lodash/includes';
+import { includes } from 'lodash';
 
 const modifiedMD = danger.git.modified_files.join('\n- ');
 message(`Changed Files in this PR: \n - ${modifiedMD}`);

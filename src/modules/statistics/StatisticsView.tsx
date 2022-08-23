@@ -65,7 +65,7 @@ function Statistics() {
               <View style={styles.leftCategoryColumn}>
                 {categoriesLeft.map((item, idx) => (
                   <CategoryPanel
-                    bandColor={item.color}
+                    color={item.color}
                     key={idx}
                     logo={item.logo}
                     categoryName={item.categoryName}
@@ -77,7 +77,7 @@ function Statistics() {
               <View style={styles.rightCategoryColumn}>
                 {categoriesRight.map((item, idx) => (
                   <CategoryPanel
-                    bandColor={item.color}
+                    color={item.color}
                     key={idx}
                     logo={item.logo}
                     categoryName={item.categoryName}
