@@ -22,7 +22,7 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <View style={styles.headerBackground}>
         <View style={styles.headerText}>
-          <Text size={20} color={colors.darkGray}>
+          <Text size={20} color={colors.white}>
             Derzeitiger Score
           </Text>
           <View style={styles.scoreCircle}>
@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   lastPurchaseSection: {
-    width: '90%',
+    // width: '90%',
+    marginHorizontal: 8,
     marginTop: 20,
     height: '18%'
     // flex: 1,
