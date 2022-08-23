@@ -12,7 +12,7 @@ export enum CategoriesColor {
   Süssigkeiten = '#FF53CF',
   Milchprodukte = '#3DD0FF',
 }
-export const categories: CategoryPanelProps[] = [
+export const categoriesLeft: CategoryPanelProps[] = [
   {
     logo: (
       <Image
@@ -25,18 +25,7 @@ export const categories: CategoryPanelProps[] = [
     total: 20.2,
     color: CategoriesColor.FastFood,
   },
-  {
-    logo: (
-      <Image
-        style={{ width: 30, height: 30 }}
-        source={require('../../../assets/images/categories/apfel.png')}
-      />
-    ),
-    categoryName: 'Früchte',
-    percent: 20,
-    total: 40.5,
-    color: CategoriesColor.Früchte,
-  },
+
   {
     logo: (
       <Image
@@ -48,6 +37,47 @@ export const categories: CategoryPanelProps[] = [
     percent: 20,
     total: 18.3,
     color: CategoriesColor.Gemüse,
+  },
+
+  {
+    logo: (
+      <Image
+        style={{ width: 30, height: 30 }}
+        source={require('../../../assets/images/categories/rice.png')}
+      />
+    ),
+    categoryName: 'Getreide',
+    percent: 20,
+    total: 70.55,
+    color: CategoriesColor.Getreide,
+  },
+
+  {
+    logo: (
+      <Image
+        style={{ width: 30, height: 30 }}
+        source={require('../../../assets/images/categories/olive-oil.png')}
+      />
+    ),
+    categoryName: 'Öle',
+    percent: 20,
+    total: 8.9,
+    color: CategoriesColor.Öle,
+  },
+];
+
+export const categoriesRight: CategoryPanelProps[] = [
+  {
+    logo: (
+      <Image
+        style={{ width: 30, height: 30 }}
+        source={require('../../../assets/images/categories/apfel.png')}
+      />
+    ),
+    categoryName: 'Früchte',
+    percent: 20,
+    total: 40.5,
+    color: CategoriesColor.Früchte,
   },
   {
     logo: (
@@ -65,18 +95,6 @@ export const categories: CategoryPanelProps[] = [
     logo: (
       <Image
         style={{ width: 30, height: 30 }}
-        source={require('../../../assets/images/categories/rice.png')}
-      />
-    ),
-    categoryName: 'Getreide',
-    percent: 20,
-    total: 70.55,
-    color: CategoriesColor.Getreide,
-  },
-  {
-    logo: (
-      <Image
-        style={{ width: 30, height: 30 }}
         source={require('../../../assets/images/categories/dairy-products.png')}
       />
     ),
@@ -84,17 +102,5 @@ export const categories: CategoryPanelProps[] = [
     percent: 20,
     total: 140.25,
     color: CategoriesColor.Milchprodukte,
-  },
-  {
-    logo: (
-      <Image
-        style={{ width: 30, height: 30 }}
-        source={require('../../../assets/images/categories/olive-oil.png')}
-      />
-    ),
-    categoryName: 'Öle',
-    percent: 20,
-    total: 8.9,
-    color: CategoriesColor.Öle,
   },
 ];

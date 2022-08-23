@@ -40,9 +40,9 @@ export default function CategoryPanel({
 const styles = StyleSheet.create({
   container: {
     borderColor: colors.black,
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 5,
-    width: '47%',
+    // width: '100%',
     flexDirection: 'row',
     margin: 5,
     height: 80,

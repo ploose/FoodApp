@@ -215,15 +215,10 @@ export default function StatisticsChart(props:props) {
       <View
         style={{
           flexDirection: 'row',
-          // alignSelf:'center',
-          // alignContent: 'center',
-          // alignItems: 'center',
-          // justifyContent: 'center',
           paddingHorizontal: 20,
           width: '100%',
           // backgroundColor: colors.secondary,
           height: apx(500),
-          // alignSelf: 'center',
         }}
       >
         <View style={{ flex: 1 }} {...panResponder.current.panHandlers}>
