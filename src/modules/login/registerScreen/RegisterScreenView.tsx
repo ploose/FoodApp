@@ -61,6 +61,7 @@ export default function RegisterScreen({ navigation }:{navigation:registerScreen
         label="Passwort"
         returnKeyType="done"
         value={password.value}
+        secureTextEntry={true}
         onChangeText={(text: string) => setPassword({ value: text, error: '' })}
         error={!!password.error}
         errorText={password.error}    />

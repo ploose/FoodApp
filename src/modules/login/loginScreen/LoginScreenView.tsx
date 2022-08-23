@@ -59,6 +59,7 @@ export default function LoginScreen(props: any) {
       />
       <TextInput
         label="Passwort"
+        secureTextEntry={true}
         returnKeyType="done"
         value={password.value}
         onChangeText={(text: string) => setPassword({ value: text, error: '' })}
