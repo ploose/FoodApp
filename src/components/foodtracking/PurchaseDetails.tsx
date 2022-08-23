@@ -12,16 +12,22 @@ import { nutriScoreImageProvider } from '../../helpers/nutriScoreImageProvider';
 import { Nutriscore } from '../../helpers/nutriScores';
 import { IProduct, IPurchase } from '../../@types/PurchaseStorage.d';
 
-export default function PurchaseDetails(props: { route: { params: IPurchase } }) {
+export default function PurchaseDetails(props: {
+  route: { params: IPurchase },
+}) {
   let purchaseDetails = props.route.params;
 
   let [SwipeablePanelActive, setSwipablePanelActive] = useState(false);
-  let [PanelProduct, setPanelProduct] = useState<IProduct | undefined>();
+  let [PanelProduct, setPanelProduct] = useState<IProduct>({
+    price: '0',
+    quantity: '0',
+    id: '0',
+  });
 
-  console.log("Params", purchaseDetails);
-  
-  const openPanel:any = (product: IProduct) => {
-    setPanelProduct(product)
+  console.log('Params', purchaseDetails);
+
+  const openPanel: any = (product: IProduct) => {
+    setPanelProduct(product);
     setSwipablePanelActive(true);
   };
   const closePanel = () => {
@@ -134,10 +140,9 @@ export default function PurchaseDetails(props: { route: { params: IPurchase } })
         showCloseButton
         closeOnTouchOutside
         onPressCloseButton={closePanel}
-        style={{height: '80%'}}
+        style={{ height: '80%' }}
       >
-        <ProductDetails
-        product={PanelProduct} />
+        <ProductDetails product={PanelProduct} />
       </SwipeablePanel>
     </View>
   );

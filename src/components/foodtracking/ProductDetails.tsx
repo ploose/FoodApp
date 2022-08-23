@@ -9,11 +9,10 @@ import { Nutriscore } from '../../helpers/nutriScores';
 import { IProduct } from '../../@types/PurchaseStorage.d';
 
 type props = {
-  product: IProduct
-}
+  product: IProduct,
+};
 
-export default function ProductDetails(props:props) {
-
+export default function ProductDetails(props: props) {
   const product = props.product;
 
   return (
@@ -28,9 +27,7 @@ export default function ProductDetails(props:props) {
         />
 
         <View style={styles.headerContainer_productInfo}>
-          <Text style={{ fontWeight: 'bold' }}>
-            {product.id}
-          </Text>
+          <Text style={{ fontWeight: 'bold' }}>{product.id}</Text>
           <Text style={{ fontSize: 13 }}>Menge: {product.quantity}</Text>
           {/* <Text style={{ fontSize: 13 }}></Text> */}
 
@@ -60,13 +57,13 @@ export default function ProductDetails(props:props) {
           name={'Ballaststoffe'}
           description={'Kleine Menge'}
         />
-            <NutritionListEntry
+        <NutritionListEntry
           color={'yellow'}
           quantity={'5.6g'}
           name={'Eiweiss'}
           description={'Mittlere Menge'}
         />
-            <NutritionListEntry
+        <NutritionListEntry
           color={'red'}
           quantity={'5.6g'}
           name={'Salz'}
@@ -76,8 +73,12 @@ export default function ProductDetails(props:props) {
 
       <View style={styles.nutritionInfoContainer}>
         <Text style={{ fontWeight: 'bold' }}>Inhaltsstoffe</Text>
-        <Text>WEIZENmehl*, Wasser, BAUMNÜSSE 14%, ROGGENmehl* 7%, Kartoffelflocken* 5%, Hefe, WEIZENprotein, Kochsalz jodiert, Sonnenblumenöl, Zucker, GERSTENmalzmehl, Kartoffelstärke, Mehlbehandlungsmittel: Ascorbinsäure.
-          * in IP-SUISSE Qualität</Text>
+        <Text>
+          WEIZENmehl*, Wasser, BAUMNÜSSE 14%, ROGGENmehl* 7%, Kartoffelflocken*
+          5%, Hefe, WEIZENprotein, Kochsalz jodiert, Sonnenblumenöl, Zucker,
+          GERSTENmalzmehl, Kartoffelstärke, Mehlbehandlungsmittel:
+          Ascorbinsäure. * in IP-SUISSE Qualität
+        </Text>
       </View>
     </View>
   );
@@ -86,7 +87,6 @@ export default function ProductDetails(props:props) {
 const styles = StyleSheet.create({
   productInfoContainer: {
     backgroundColor: colors.primary,
-    
   },
   headerContainer: {
     backgroundColor: colors.white,
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     padding: 5,
     width: '50%',
     alignContent: 'center',
-    
   },
   nutriScore: {
     aspectRatio: 1024 / 555,
