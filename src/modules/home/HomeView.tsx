@@ -1,10 +1,28 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { SwipeablePanel } from 'rn-swipeable-panel';
 
 import { colors } from '../../styles';
 import { Text } from '../../components/StyledText';
 import Purchase from '../../components/foodtracking/PurchaseListEntry';
 import { Nutriscore } from '../../helpers/nutriScores';
+import { ProductPreview } from '../../components';
+import { getProductsArray } from '../../helpers/purchaseUtils';
+import { useContext } from 'react';
+import {
+  IProduct,
+  IPurchase,
+  PurchaseStorageContextType,
+} from '../../@types/PurchaseStorage.d';
+import { PurchaseStorageContext } from '../../context/PurchaseStorageContext';
+import { useState } from 'react';
+import ProductDetails from '../../components/foodtracking/ProductDetails';
 
 export default function HomeScreen() {
   // TODO: Go tho the purchase
@@ -18,6 +36,53 @@ export default function HomeScreen() {
   //   });
   // }
 
+  let [SwipeablePanelActive, setSwipablePanelActive] = useState(false);
+  let [PanelProduct, setPanelProduct] = useState<IProduct>({
+    price: '0',
+    quantity: '0',
+    id: '0',
+  });
+
+  const openPanel: any = (product: IProduct) => {
+    setPanelProduct(product);
+    setSwipablePanelActive(true);
+  };
+  const closePanel = () => {
+    setSwipablePanelActive(false);
+  };
+
+  const context: PurchaseStorageContextType | null = useContext(
+    PurchaseStorageContext,
+  );
+  let purchases: IPurchase[];
+  if (!context) {
+    purchases = [];
+  } else {
+    purchases = context.purchases;
+    console.log('ContextReceived', purchases);
+  }
+
+  //Mock Data Generation - Loops through purchases until it find 5 random products.
+  function generateMockData(purchases: IPurchase[]) {
+    let productsArray: IProduct[] = [];
+    let topCounter = 0;
+    for (const index in purchases) {
+      if (Object.prototype.hasOwnProperty.call(purchases, index)) {
+        const purchase = purchases[index];
+        let products = getProductsArray(purchase.products);
+        productsArray = [...productsArray, ...products];
+      }
+    }
+    return productsArray;
+  }
+  let topProducts: IProduct[] = [];
+  let flopProducts: IProduct[] = [];
+  let productsArray = generateMockData(purchases);
+  if (productsArray != []) {
+    topProducts = productsArray.slice(0, 5);
+    flopProducts = productsArray.slice(5, 10);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.headerBackground}>
@@ -30,18 +95,73 @@ export default function HomeScreen() {
           </View>
         </View>
       </View>
+      <ScrollView>
+        <View style={styles.lastPurchaseSection}>
+          <Text style={styles.productsTitle}>Letzter Einkauf</Text>
+          <Purchase
+            name={'Migros Altstätten'}
+            date={'20.01.2022'}
+            cost={'123.40'}
+            score={Nutriscore.C}
+          />
+        </View>
 
-      <View style={styles.lastPurchaseSection}>
-        <Text>Letzter Einkauf</Text>
-        <Purchase
-          name={'Migros Altstätten'}
-          date={'20.01.2022'}
-          cost={'123.40'}
-          score={Nutriscore.C}
-        />
-      </View>
-
-      <View style={styles.section}></View>
+        <View style={styles.section}>
+          <Text style={styles.productsTitle}>
+            Deine gesündesten Produkte der letzten 10 Einkäufe
+          </Text>
+          <View style={styles.topSection}>
+            {topProducts.map((item, idx) => (
+              <TouchableOpacity onPress={() => openPanel(item)}>
+                <View>
+                  <ProductPreview
+                    key={idx}
+                    id={item.id}
+                    price={item.price}
+                    quantity={item.quantity}
+                  />
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+          <Text style={styles.productsTitle}>
+            Deine ungesündesten Produkte der letzten 10 Einkäufe
+          </Text>
+          <View style={styles.bottomSection}>
+            {flopProducts.map((item, idx) => (
+              <TouchableOpacity onPress={() => openPanel(item)}>
+                <View>
+                  <ProductPreview
+                    key={idx}
+                    id={item.id}
+                    price={item.price}
+                    quantity={item.quantity}
+                  />
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+        {/* <View style={{height: 20}}/> */}
+      </ScrollView>
+      {/* @ts-ignore  - Due to SwipeablePanel being a js module and expecting no children prop*/}
+      <SwipeablePanel
+        fullWidth
+        isActive={SwipeablePanelActive}
+        onClose={closePanel}
+        // onlyLarge
+        // smallPanelHeight={400}
+        // panelHeight={200}
+        deviceHeight={50}
+        showCloseButton
+        closeOnTouchOutside
+        onPressCloseButton={closePanel}
+        style={{ height: '80%', elevation: -1000 }}
+      >
+        <View style={{ elevation: 21000 }}>
+          <ProductDetails product={PanelProduct} />
+        </View>
+      </SwipeablePanel>
     </View>
   );
 }
@@ -50,24 +170,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
   },
   headerText: {
-    flex: 1,
-    paddingHorizontal: 20,
-    justifyContent: 'flex-start',
     paddingTop: 515,
     alignItems: 'center',
-    position: 'absolute',
   },
   scoreCircle: {
-    paddingHorizontal: 20,
-    justifyContent: 'center',
     paddingTop: 20,
     marginTop: 10,
     backgroundColor: colors.nutriScore_A,
-    alignItems: 'center',
     borderWidth: 2,
     borderColor: colors.white,
     width: 180,
@@ -85,28 +196,33 @@ const styles = StyleSheet.create({
     height: 750,
     width: 750,
     borderRadius: 750 / 2,
-    shadowColor: '#171717',
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 20,
     marginTop: -510,
-    alignItems: 'center',
   },
   lastPurchaseSection: {
-    // width: '90%',
     marginHorizontal: 8,
-    marginTop: 20,
-    height: '18%'
-    // flex: 1,
+    marginTop: 15,
+    paddingBottom: 15,
   },
   section: {
-    flex: 1,
-    paddingHorizontal: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginHorizontal: 8,
+    // width: '100%'
+    // backgroundColor: colors.white,
+    // marginBottom: 50
+  },
+  topSection: {
+    marginBottom: 15,
     borderColor: colors.black,
-    borderRadius: 2,
-    backgroundColor: colors.white,
+    backgroundColor: colors.primary,
+    borderWidth: 2,
+    borderRadius: 5,
+  },
+  bottomSection: {
+    borderColor: colors.black,
+    backgroundColor: colors.primary,
+    borderWidth: 2,
+    borderRadius: 5,
+  },
+  productsTitle: {
+    fontWeight: 'bold',
   },
 });
