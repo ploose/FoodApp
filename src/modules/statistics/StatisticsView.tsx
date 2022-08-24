@@ -1,27 +1,12 @@
 // @ts-nocheck
-import React, { MutableRefObject, useContext, useRef, useState } from 'react';
-import { LineChart, PieChart, XAxis } from 'react-native-svg-charts';
+import React, { useContext} from 'react';
 import {
   StyleSheet,
   View,
   Text,
-  PanResponder,
-  Dimensions,
-  FlatList,
-  Pressable,
-  SafeAreaView,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { GridView, TouchableOpacity } from 'react-native-ui-lib';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import {
-  VictoryBar,
-  VictoryChart,
-  VictoryTheme,
-  VictoryPie,
-  VictoryContainer,
-} from 'victory-native';
 
 import {
   IPurchase,
@@ -30,11 +15,9 @@ import {
 import StatisticsChart from './StatisticsChart';
 import { PurchaseStorageContext } from '../../context/PurchaseStorageContext';
 import StatisticsPieChart from './StatisticsPieChart';
-import { black } from 'react-native-paper/lib/typescript/styles/colors';
 import CategoryPanel from './CategoryPanel';
-import { colors, fonts } from '../../styles';
+import { colors } from '../../styles';
 import { categoriesLeft, categoriesRight } from './Categories';
-import { color } from 'react-native-reanimated';
 
 // Code based on https://github.com/JesperLekland/react-native-svg-charts-examples/blob/master/storybook/stories/interactive-chart/index.js
 
@@ -48,6 +31,7 @@ function Statistics() {
   } else {
     purchases = context.purchases;
   }
+
   return (
     <ScrollView>
       <View style={styles.container}>

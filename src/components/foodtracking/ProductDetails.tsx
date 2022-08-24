@@ -86,7 +86,7 @@ export default function ProductDetails(props: props) {
 
 const styles = StyleSheet.create({
   productInfoContainer: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary
   },
   headerContainer: {
     backgroundColor: colors.white,

@@ -40,7 +40,6 @@ function LoginApp() {
   }, []);
 
   if (initializing) return null;
-  console.log(user);
 
   return (
       <NavigationContainer>

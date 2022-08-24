@@ -11,6 +11,7 @@ import ProductDetails from './ProductDetails';
 import { nutriScoreImageProvider } from '../../helpers/nutriScoreImageProvider';
 import { Nutriscore } from '../../helpers/nutriScores';
 import { IProduct, IPurchase } from '../../@types/PurchaseStorage.d';
+import { getProductsArray } from '../../helpers/purchaseUtils';
 
 export default function PurchaseDetails(props: {
   route: { params: IPurchase },
@@ -24,8 +25,6 @@ export default function PurchaseDetails(props: {
     id: '0',
   });
 
-  console.log('Params', purchaseDetails);
-
   const openPanel: any = (product: IProduct) => {
     setPanelProduct(product);
     setSwipablePanelActive(true);
@@ -33,15 +32,6 @@ export default function PurchaseDetails(props: {
   const closePanel = () => {
     setSwipablePanelActive(false);
   };
-
-  function getProductsArray(products: { [x: string]: any }) {
-    let myArray = [];
-    for (const element in products) {
-      products[element].id = element;
-      myArray.push(products[element]);
-    }
-    return myArray;
-  }
 
   return (
     <View style={styles.lastPurchaseBox}>

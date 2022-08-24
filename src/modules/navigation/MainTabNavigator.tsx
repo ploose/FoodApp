@@ -14,7 +14,6 @@ import PurchaseStorageProvider, {
 export default function BottomTabs() {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      console.log('user logged');
     }
   });
   return (

@@ -37,7 +37,6 @@ export default function Navigator() {
 
   function onAuthStateChanged(user: any) {
     setUser(user);
-    console.log('User!', user);
     if (initializing) setInitializing(false);
   }
 

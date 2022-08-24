@@ -59,7 +59,6 @@ export default function HomeScreen() {
     purchases = [];
   } else {
     purchases = context.purchases;
-    console.log('ContextReceived', purchases);
   }
 
   //Mock Data Generation - Loops through purchases until it find 5 random products.
