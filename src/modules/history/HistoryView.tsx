@@ -22,47 +22,9 @@ import {
 } from '@react-navigation/stack';
 import { Nutriscore } from '../../helpers/nutriScores';
 
-function custom_sort(b: any, a: any) {
-  return (
-    moment(a.date, 'DD/MM/YYYY')
-      .toDate()
-      .getTime() -
-    moment(b.date, 'DD/MM/YYYY')
-      .toDate()
-      .getTime()
-  );
-}
-
-// const { purchases, updatePurchase } = React.useContext(PurchaseStorageContext) as PurchaseStorageContextType;
-
-function getPurchases() {
-  // console.log("Purchases", purchases);
-
-  // const options = {
-  //   method: 'GET',
-  // };
-  // return fetch('http://10.0.2.2:5000/getData')
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     return console.log(json);
-  //   })
-  //   .catch(error => {
-  //     console.error(error);
-  //   });
-  const jsonFile = require('./data.json');
-  let myArray = [];
-  for (const element in jsonFile) {
-    jsonFile[element].id = element;
-    myArray.push(jsonFile[element]);
-  }
-  myArray.sort(custom_sort);
-
-  return myArray;
-}
-
 type historyViewProp = StackNavigationProp<
   HistoryRootTabParamList,
-  'HistoryView',
+  'HistoryView'
 >;
 
 function HistoryView({ navigation }: { navigation: historyViewProp }) {
@@ -74,12 +36,14 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
     purchases = [];
   } else {
     purchases = context.purchases;
+    console.log("Purchases", purchases);
+    
   }
 
   return (
     <View>
       <FlatList
-        keyExtractor={item => item.time}
+        keyExtractor={item => item.id}
         data={purchases}
         renderItem={({ item }) => (
           <TouchableOpacity
