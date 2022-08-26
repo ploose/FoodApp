@@ -41,6 +41,7 @@ export default function HomeScreen() {
     price: '0',
     quantity: '0',
     id: '0',
+    imageUrl: '',
   });
 
   const openPanel: any = (product: IProduct) => {
@@ -61,7 +62,7 @@ export default function HomeScreen() {
     purchases = context.purchases;
   }
 
-  //Mock Data Generation - Loops through purchases until it find 5 random products.
+  //Mock Data Generation - Loops through purchases until it finds 5 random products.
   function generateMockData(purchases: IPurchase[]) {
     let productsArray: IProduct[] = [];
     let topCounter = 0;
@@ -94,7 +95,7 @@ export default function HomeScreen() {
           </View>
         </View>
       </View>
-      <ScrollView>
+      <ScrollView style={{  elevation: -1 }}>
         <View style={styles.lastPurchaseSection}>
           <Text style={styles.productsTitle}>Letzter Einkauf</Text>
           <Purchase
@@ -106,42 +107,42 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.productsTitle}>
-            Deine gesündesten Produkte der letzten 10 Einkäufe
-          </Text>
+          <Text style={styles.productsTitle}>Top Produkte</Text>
           <View style={styles.topSection}>
             {topProducts.map((item, idx) => (
-              <TouchableOpacity onPress={() => openPanel(item)}>
+              <TouchableOpacity key={idx} onPress={() => openPanel(item)}>
                 <View>
                   <ProductPreview
                     key={idx}
                     id={item.id}
                     price={item.price}
                     quantity={item.quantity}
+                    isLast={idx == topProducts.length - 1}
                   />
                 </View>
               </TouchableOpacity>
             ))}
           </View>
-          <Text style={styles.productsTitle}>
-            Deine ungesündesten Produkte der letzten 10 Einkäufe
-          </Text>
+          <Text style={styles.productsTitle}>Flop Produkte</Text>
           <View style={styles.bottomSection}>
             {flopProducts.map((item, idx) => (
-              <TouchableOpacity onPress={() => openPanel(item)}>
+              <TouchableOpacity
+                key={idx + topProducts.length}
+                onPress={() => openPanel(item)}
+              >
                 <View>
                   <ProductPreview
-                    key={idx}
+                    key={idx + topProducts.length}
                     id={item.id}
                     price={item.price}
                     quantity={item.quantity}
+                    isLast={idx == topProducts.length - 1}
                   />
                 </View>
               </TouchableOpacity>
             ))}
           </View>
         </View>
-        {/* <View style={{height: 20}}/> */}
       </ScrollView>
       {/* @ts-ignore  - Due to SwipeablePanel being a js module and expecting no children prop*/}
       <SwipeablePanel
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
-    paddingTop: 515,
+    paddingTop: 525,
     alignItems: 'center',
   },
   scoreCircle: {
@@ -180,33 +181,32 @@ const styles = StyleSheet.create({
     backgroundColor: colors.nutriScore_A,
     borderWidth: 2,
     borderColor: colors.white,
-    width: 180,
-    height: 180,
+    width: 130,
+    height: 130,
     borderRadius: 180 / 2,
   },
   scoreText: {
     color: colors.white,
-    fontSize: 100,
+    fontSize: 60,
     textAlign: 'center',
     height: '100%',
   },
   headerBackground: {
     backgroundColor: colors.primary,
-    height: 750,
-    width: 750,
-    borderRadius: 750 / 2,
-    marginTop: -510,
+    height: 710,
+    width: 710,
+    borderRadius: 710 / 2,
+    marginTop: -520,
+    borderWidth: 2,
+    position: 'absolute'
   },
   lastPurchaseSection: {
     marginHorizontal: 8,
-    marginTop: 15,
+    marginTop: 190,
     paddingBottom: 15,
   },
   section: {
     marginHorizontal: 8,
-    // width: '100%'
-    // backgroundColor: colors.white,
-    // marginBottom: 50
   },
   topSection: {
     marginBottom: 15,
@@ -217,9 +217,10 @@ const styles = StyleSheet.create({
   },
   bottomSection: {
     borderColor: colors.black,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.secondary,
     borderWidth: 2,
     borderRadius: 5,
+    marginBottom: 5,
   },
   productsTitle: {
     fontWeight: 'bold',
