@@ -18,11 +18,15 @@ export default function PurchaseDetails(props: {
 }) {
   let purchaseDetails = props.route.params;
 
+  console.log("Purchase Details", purchaseDetails);
+  
+
   let [SwipeablePanelActive, setSwipablePanelActive] = useState(false);
   let [PanelProduct, setPanelProduct] = useState<IProduct>({
     price: '0',
     quantity: '0',
     id: '0',
+    imageUrl: ''
   });
 
   const openPanel: any = (product: IProduct) => {
@@ -78,7 +82,7 @@ export default function PurchaseDetails(props: {
               {'Kosten'}
             </Text>
             <Text style={styles.purchaseDetailsInfo_labelContainer_value}>
-              {purchaseDetails.total}
+              {parseFloat(purchaseDetails.total).toFixed(2)} CHF
             </Text>
           </View>
         </View>

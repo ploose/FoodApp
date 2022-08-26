@@ -18,13 +18,14 @@ export default function ProductDetails(props: props) {
   return (
     <View style={styles.productInfoContainer}>
       <View style={styles.headerContainer}>
-        <Image
-          style={styles.headerContainer_image}
-          source={{
-            uri:
-              'https://image.migros.ch/mo-boxed/v-w-480-h-360/10df3d2acfe3401edc25152be98627285f821d50/kartoffelbrot-mit-nuessen-ip-suisse.jpg',
-          }}
-        />
+        <View style={styles.headerContainer_image_container}>
+          <Image
+            style={styles.headerContainer_image}
+            source={{
+              uri: product.imageUrl,
+            }}
+          />
+        </View>
 
         <View style={styles.headerContainer_productInfo}>
           <Text style={{ fontWeight: 'bold' }}>{product.id}</Text>
@@ -86,21 +87,28 @@ export default function ProductDetails(props: props) {
 
 const styles = StyleSheet.create({
   productInfoContainer: {
-    backgroundColor: colors.primary
+    backgroundColor: colors.primary,
   },
   headerContainer: {
     backgroundColor: colors.white,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    width: '100%',
+    // width: '100%',
     padding: 10,
     height: 150,
+  },
+  headerContainer_image_container : {
+    paddingHorizontal: '10%',
+    justifyContent: 'center'
   },
   headerContainer_image: {
     flex: 1,
     resizeMode: 'contain',
-    width: '100%',
+    maxHeight: 90,
+    maxWidth: 100,
+    // width: '100%',
+
     transform: [{ scale: 1.25 }],
     aspectRatio: 1,
   },

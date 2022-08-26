@@ -3,16 +3,24 @@ import { Alert, StyleSheet } from 'react-native';
 import { colors } from '../../styles';
 import { View, Text, Image } from 'react-native-ui-lib';
 
+let isLastElement
+
 export default function ProductPreview(props: {
   id: string,
   price: string,
   quantity: string,
+  isLast: boolean
 }) {
+
+  isLastElement = props.isLast
+  console.log(isLastElement);
+  
+
   return (
-    <View style={styles.productBox}>
+    <View style={[styles.productBox, {borderBottomWidth:props.isLast?0:2}]}>
       <Text style={styles.product}>{props.id}</Text>
       <Text style={styles.quantity}>{props.quantity}</Text>
-      <Text style={styles.price}>{props.price}</Text>
+      <Text style={styles.price}>{parseFloat(props.price).toFixed(2)}</Text>
       <Image
         source={require('../../../assets/images/nutriscore/D.png')}
         style={styles.nutriScore}
@@ -26,8 +34,6 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 5,
     borderColor: colors.black,
-    // backgroundColor: colors.white,
-    borderBottomWidth: 2,
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',

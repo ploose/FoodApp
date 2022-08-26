@@ -4,63 +4,23 @@ import { colors, paddings } from '../../styles';
 import { View, Text, Image } from 'react-native-ui-lib';
 
 import { Nutriscore } from '../../helpers/nutriScores';
+import { nutriScoreImageProvider } from '../../helpers/nutriScoreImageProvider';
 
-export default function Purchase(props: { name: string; date: string; cost: string; score: Nutriscore; }) {
-  function getNutriScoreImage(nutriScore: Nutriscore) {
-    switch (nutriScore) {
-      case 'A':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/A.png')}
-            style={styles.nutriScore}
-          />
-        );
-
-      case 'B':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/B.png')}
-            style={styles.nutriScore}
-          />
-        );
-
-      case 'C':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/C.png')}
-            style={styles.nutriScore}
-          />
-        );
-
-      case 'D':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/D.png')}
-            style={styles.nutriScore}
-          />
-        );
-      case 'E':
-        return (
-          <Image
-            source={require('../../../assets/images/nutriscore/E.png')}
-            style={styles.nutriScore}
-          />
-        );
-
-      default:
-        Alert.alert('NUMBER NOT FOUND');
-    }
-  }
+export default function Purchase(props: {
+  name: string,
+  date: string,
+  cost: string,
+  score: Nutriscore,
+}) {
 
   return (
     <View style={styles.lastPurchaseBox}>
       <View style={styles.lastPurchaseBoxSection}>
-          <Image
-            style={styles.logo}
-            source={require('../../../assets/images/retailers/Migros_logo_small.png')}
-          />
-          <Text style={styles.retailerName}>{props.name}</Text>
-
+        <Image
+          style={styles.logo}
+          source={require('../../../assets/images/retailers/Migros_logo_small.png')}
+        />
+        <Text style={styles.retailerName}>{props.name}</Text>
       </View>
 
       <View style={styles.lastPurchaseBoxSection2}>
@@ -68,10 +28,14 @@ export default function Purchase(props: { name: string; date: string; cost: stri
           <Text style={styles.date}>{props.date}</Text>
         </View>
         <View style={styles.costContainer}>
-          <Text style={styles.cost}>CHF {parseFloat(props.cost).toFixed(2)}</Text>
+          <Text style={styles.cost}>
+            CHF {parseFloat(props.cost).toFixed(2)}
+          </Text>
         </View>
         <View style={styles.nutriScoreContainer}>
-          {getNutriScoreImage(props.score)}
+          <View style={styles.nutriScore}>
+            {nutriScoreImageProvider(props.score)}
+          </View>
         </View>
       </View>
     </View>
@@ -81,30 +45,29 @@ export default function Purchase(props: { name: string; date: string; cost: stri
 const styles = StyleSheet.create({
   lastPurchaseBox: {
     borderColor: colors.black,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.lightGray,
     borderWidth: 2,
     borderRadius: 5,
-    height: Dimensions.get('window').width/5,
+    height: Dimensions.get('window').width / 5,
+    elevation: 5
   },
   lastPurchaseBoxSection: {
     flexDirection: 'row',
     padding: 10,
     height: '50%',
-    width: '100%'
+    width: '100%',
   },
   logo: {
-    aspectRatio: 4761/880,
+    aspectRatio: 4761 / 880,
     alignSelf: 'center',
-    flex: 1
-
+    flex: 1,
   },
   lastPurchaseBoxSection2: {
     flexDirection: 'row',
     borderTopWidth: 2,
     justifyContent: 'space-evenly',
     height: '50%',
-    width: '100%'
-
+    width: '100%',
   },
   dateContainer: {
     borderRightWidth: 2,
@@ -130,7 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   nutriScore: {
-    aspectRatio: 1024/555,
+    aspectRatio: 1024 / 555,
     alignSelf: 'center',
     flex: 1,
   },
@@ -144,6 +107,6 @@ const styles = StyleSheet.create({
     width: '50%',
     flex: 2,
     paddingLeft: '5%',
-    textAlign: 'left'
+    textAlign: 'left',
   },
 });
