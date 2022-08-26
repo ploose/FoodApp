@@ -17,6 +17,5 @@ function custom_sort(b: any, a: any) {
       products[element].id = element;
       productsArray.push(products[element]);
     }
-    productsArray.pop()
     return productsArray;
   }
