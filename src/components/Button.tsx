@@ -6,10 +6,13 @@ import { theme } from '../core/theme';
 export default function Button({
   mode,
   style,
+  children,
   ...props
 }: {
   mode: 'text' | 'outlined' | 'contained' | undefined,
   style: any,
+  children:any,
+  onPress:Function
 }) {
   // @ignore-tsc
   return (
@@ -23,7 +26,7 @@ export default function Button({
       labelStyle={styles.text}
       mode={mode}
       {...props}
-    />
+    >{children}</PaperButton>
   );
 }
 

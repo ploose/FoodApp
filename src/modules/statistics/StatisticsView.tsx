@@ -1,10 +1,6 @@
 // @ts-nocheck
-import React, { useContext} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -97,8 +93,6 @@ export default function StatisticsScreen({
           title: 'Statistik',
           headerStyle: {
             backgroundColor: colors.primary,
-            // borderRadius: 2, borderColor: colors.black, borderWidth: 2,
-            // elevation: 1
           },
           headerTintColor: '#fff',
         }}
@@ -110,11 +104,7 @@ export default function StatisticsScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: 10,
-    // padding: 3,
     backgroundColor: colors.primary,
-    // borderRadius: 20,
-    // height: 1000
   },
   tileTitles: {
     color: colors.black,
@@ -122,11 +112,6 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 14,
     fontWeight: 'bold',
-  },
-  chart: {
-    // borderWidth: 2,
-    // borderRadius: 5,
-    // backgroundColor: colors.white
   },
   chartContainer: {
     marginHorizontal: 8,
@@ -136,17 +121,16 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginTop: 5,
     paddingBottom: 12,
-    elevation: 5
+    elevation: 5,
   },
   piechartContainer: {
     marginHorizontal: 8,
-    elevation: 5
+    elevation: 5,
   },
   piechart: {
     borderWidth: 2,
     borderRadius: 10,
     shadowColor: '#fff',
-    // shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 60,
     paddingBottom: 5,
@@ -156,16 +140,15 @@ const styles = StyleSheet.create({
   },
   categoryPanelsContainer: {
     flex: 1,
-    // alignItems: 'center',
     alignContent: 'center',
     alignSelf: 'center',
     width: '100%',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   leftCategoryColumn: {
     width: '50%',
   },
   rightCategoryColumn: {
     width: '50%',
-  }
+  },
 });

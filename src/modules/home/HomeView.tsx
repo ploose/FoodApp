@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SwipeablePanel } from 'rn-swipeable-panel';
+import { useContext, useState } from 'react';
 
 import { colors } from '../../styles';
 import { Text } from '../../components/StyledText';
@@ -14,28 +9,15 @@ import Purchase from '../../components/foodtracking/PurchaseListEntry';
 import { Nutriscore } from '../../helpers/nutriScores';
 import { ProductPreview } from '../../components';
 import { getProductsArray } from '../../helpers/purchaseUtils';
-import { useContext } from 'react';
 import {
   IProduct,
   IPurchase,
   PurchaseStorageContextType,
 } from '../../@types/PurchaseStorage.d';
 import { PurchaseStorageContext } from '../../context/PurchaseStorageContext';
-import { useState } from 'react';
 import ProductDetails from '../../components/foodtracking/ProductDetails';
 
 export default function HomeScreen() {
-  // TODO: Go tho the purchase
-  // function goToPurchase() {
-  //   props.navigation.dispatch(state => {
-  //     const routes = [
-  //       ...state.routes,
-  //       { name: 'HistoryScreen' },
-  //       { name: 'PurchaseDetails', params: { test: 'r' } },
-  //     ];
-  //   });
-  // }
-
   let [SwipeablePanelActive, setSwipablePanelActive] = useState(false);
   let [PanelProduct, setPanelProduct] = useState<IProduct>({
     price: '0',
@@ -65,7 +47,6 @@ export default function HomeScreen() {
   //Mock Data Generation - Loops through purchases until it finds 5 random products.
   function generateMockData(purchases: IPurchase[]) {
     let productsArray: IProduct[] = [];
-    let topCounter = 0;
     for (const index in purchases) {
       if (Object.prototype.hasOwnProperty.call(purchases, index)) {
         const purchase = purchases[index];
@@ -95,7 +76,7 @@ export default function HomeScreen() {
           </View>
         </View>
       </View>
-      <ScrollView style={{  elevation: -1 }}>
+      <ScrollView style={{ elevation: -1 }}>
         <View style={styles.lastPurchaseSection}>
           <Text style={styles.productsTitle}>Letzter Einkauf</Text>
           <Purchase
@@ -118,7 +99,7 @@ export default function HomeScreen() {
                     price={item.price}
                     quantity={item.quantity}
                     isLast={idx == topProducts.length - 1}
-                    nutriScore={Object.values(Nutriscore)[idx%4]}
+                    nutriScore={Object.values(Nutriscore)[idx % 4]}
                   />
                 </View>
               </TouchableOpacity>
@@ -138,7 +119,7 @@ export default function HomeScreen() {
                     price={item.price}
                     quantity={item.quantity}
                     isLast={idx == topProducts.length - 1}
-                    nutriScore={Object.values(Nutriscore)[idx%5]}
+                    nutriScore={Object.values(Nutriscore)[idx % 5]}
                   />
                 </View>
               </TouchableOpacity>
@@ -151,9 +132,6 @@ export default function HomeScreen() {
         fullWidth
         isActive={SwipeablePanelActive}
         onClose={closePanel}
-        // onlyLarge
-        // smallPanelHeight={400}
-        // panelHeight={200}
         deviceHeight={50}
         showCloseButton
         closeOnTouchOutside
@@ -200,7 +178,7 @@ const styles = StyleSheet.create({
     borderRadius: 710 / 2,
     marginTop: -520,
     borderWidth: 2,
-    position: 'absolute'
+    position: 'absolute',
   },
   lastPurchaseSection: {
     marginHorizontal: 8,

@@ -1,4 +1,6 @@
-import { IPurchase } from "../../@types/PurchaseStorage.d";
+import { IPurchase } from '../../@types/PurchaseStorage.d';
+
+// undefined means there's no props - see: https://reactnavigation.org/docs/navigation-prop/
 
 export type RootStackParamList = {
   LoginScreen: undefined,
@@ -16,9 +18,9 @@ export type RootTabParamList = {
 
 export type HistoryRootTabParamList = {
   HistoryView: undefined,
-  PurchaseDetails:IPurchase,
+  PurchaseDetails: IPurchase,
 };
 
 export type StatisticsRootTabParamList = {
-  StatisticsView: undefined
+  StatisticsView: undefined,
 };

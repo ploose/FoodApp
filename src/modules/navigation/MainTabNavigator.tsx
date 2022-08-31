@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Text, View, Image, StyleSheet, Platform } from 'react-native';
+import { firebase } from '@react-native-firebase/auth';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import { colors } from '../../styles';
 import tabNavigationData from './tabNavigationData';
-import { firebase } from '@react-native-firebase/auth';
 
 const Tab = createBottomTabNavigator();
 

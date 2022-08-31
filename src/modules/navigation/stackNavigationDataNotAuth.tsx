@@ -5,7 +5,6 @@ import LoginScreen from '../login/loginScreen/LoginScreenView';
 import RegisterScreen from '../login/registerScreen/RegisterScreenView';
 import ResetPasswordScreen from '../login/resetPasswordScreen/ResetPasswordScreenView';
 import StartScreen from '../login/startScreen/StartScreenView';
-
 import { colors, fonts } from '../../styles';
 
 const headerLeftComponent = (props: {

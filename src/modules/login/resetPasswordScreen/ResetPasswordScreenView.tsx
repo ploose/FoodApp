@@ -1,6 +1,5 @@
 // @flow
 import React, { useState } from 'react';
-import auth from '@react-native-firebase/auth';
 
 import Background from '../../../components/Background';
 import BackButton from '../../../components/BackButton';
@@ -10,19 +9,16 @@ import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import { emailValidator } from '../../../helpers/emailValidator';
 import { resetPassword } from '../AuthenticationService';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/ParamLists';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-type resetPasswordScreenProp = StackNavigationProp<
+type navigationType = StackNavigationProp<
   RootStackParamList,
   'ResetPasswordScreen'
 >;
+type Props = { navigation: navigationType };
 
-export default function ResetPasswordScreen({
-  navigation,
-}: {
-  navigation: resetPasswordScreenProp,
-}) {
+export default function ResetPasswordScreen(props: Props) {
   const [email, setEmail] = useState({ value: '', error: '' });
 
   const sendResetPasswordEmail = () => {
@@ -32,12 +28,12 @@ export default function ResetPasswordScreen({
       return;
     }
     resetPassword(email.value);
-    navigation.navigate('LoginScreen');
+    props.navigation.navigate('LoginScreen');
   };
 
   return (
     <Background>
-      <BackButton goBack={navigation.goBack} />
+      <BackButton goBack={props.navigation.goBack} />
       <Logo />
       <Header>Passwort zurücksetzen</Header>
       <TextInput

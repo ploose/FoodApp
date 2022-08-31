@@ -1,11 +1,10 @@
-import { Alert, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React from 'react';
 import { Image } from 'react-native-ui-lib';
 
 import { Nutriscore } from './nutriScores';
 
 export function nutriScoreImageProvider(nutriScore: Nutriscore) {
-
   switch (nutriScore) {
     case 'A':
       return (
@@ -47,7 +46,6 @@ export function nutriScoreImageProvider(nutriScore: Nutriscore) {
       );
 
     default:
-      
   }
 }
 
@@ -57,7 +55,6 @@ const styles = StyleSheet.create({
     width: '100%',
     resizeMode: 'contain',
     height: 'auto',
-    aspectRatio: 1024/555,
-    // flex: 1,
+    aspectRatio: 1024 / 555,
   },
 });

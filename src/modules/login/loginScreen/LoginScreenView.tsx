@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import auth from '@react-native-firebase/auth';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import Background from '../../../components/Background';
 import Header from '../../../components/Header';
@@ -15,8 +15,13 @@ import { passwordValidator } from '../../../helpers/passwordValidator';
 import LogoText from '../../../components/LogoText';
 import Paragraph from '../../../components/Paragraph';
 import { signInWithEmailAndPassword } from '../AuthenticationService';
+import { RootStackParamList } from '../../navigation/ParamLists';
 
-export default function LoginScreen(props: any) {
+type navigationType = StackNavigationProp<RootStackParamList, 'LoginScreen'>;
+type Props = { navigation: navigationType };
+
+export default function LoginScreen(props: Props) {
+
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 

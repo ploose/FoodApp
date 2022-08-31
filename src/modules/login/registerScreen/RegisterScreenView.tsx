@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-paper';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import Background from '../../../components/Background';
 import Header from '../../../components/Header';
@@ -13,12 +14,16 @@ import { passwordValidator } from '../../../helpers/passwordValidator';
 import Button from '../../../components/Button';
 import LogoText from '../../../components/LogoText';
 import { createUser } from '../AuthenticationService';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/ParamLists';
 
-type registerScreenProp = StackNavigationProp<RootStackParamList, 'ResetPasswordScreen'>;
 
-export default function RegisterScreen({ navigation }:{navigation:registerScreenProp}) {
+type navigationType = StackNavigationProp<
+  RootStackParamList,
+  'RegisterScreen'
+>;
+type Props = { navigation: navigationType };
+
+export default function RegisterScreen(props: Props) {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 
@@ -35,7 +40,7 @@ export default function RegisterScreen({ navigation }:{navigation:registerScreen
 
   return (
     <Background>
-      <BackButton goBack={navigation.goBack} />
+      <BackButton goBack={props.navigation.goBack} />
       <View>
         <LogoText />
       </View>
@@ -56,7 +61,9 @@ export default function RegisterScreen({ navigation }:{navigation:registerScreen
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
-        keyboardType="email-address" description={undefined}      />
+        keyboardType="email-address"
+        description={undefined}
+      />
       <TextInput
         label="Passwort"
         returnKeyType="done"
@@ -64,18 +71,21 @@ export default function RegisterScreen({ navigation }:{navigation:registerScreen
         secureTextEntry={true}
         onChangeText={(text: string) => setPassword({ value: text, error: '' })}
         error={!!password.error}
-        errorText={password.error}    />
-        {/* @ts-ignore */}
+        errorText={password.error}
+      />
+
       <Button
         mode="outlined"
         onPress={onSignUpPressed}
         style={{ marginTop: 24 }}
       >
-        Sign Up
+        Registrieren
       </Button>
       <View style={styles.row}>
-        <Text>Du hast bereits einen Account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+        <Text>Du hast bereits einen Account </Text>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate('LoginScreen')}
+        >
           <Text style={styles.link}>Login</Text>
         </TouchableOpacity>
       </View>

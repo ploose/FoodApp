@@ -6,8 +6,7 @@ import {
 } from 'react-native';
 import { theme } from '../core/theme';
 
-export default function Background({ children }:{children:any}) {
-
+export default function Background({ children }: { children: any }) {
   return (
     <ImageBackground
       source={require('../assets/background_dot.png')}

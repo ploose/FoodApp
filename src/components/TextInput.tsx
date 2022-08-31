@@ -1,26 +1,35 @@
 import React from 'react';
-import { View, StyleSheet, Text, ReturnKeyTypeOptions, KeyboardTypeOptions } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ReturnKeyTypeOptions,
+  KeyboardTypeOptions,
+} from 'react-native';
 import { TextInput as Input } from 'react-native-paper';
 import { theme } from '../core/theme';
+
+type props = {
+  description?: any,
+  label?: string,
+  returnKeyType?: ReturnKeyTypeOptions,
+  value?: string,
+  onChangeText?: ((text: string) => void) & Function,
+  error: boolean,
+  errorText?: string,
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters' | undefined,
+  autoCompleteType?: string,
+  textContentType?: any,
+  keyboardType?: KeyboardTypeOptions,
+  secureTextEntry?: boolean
+};
 
 export default function TextInput({
   errorText,
   description,
   error,
   ...props
-}: {
-  description?: any,
-  label?:string,
-  returnKeyType?:ReturnKeyTypeOptions,
-  value?:string,
-  onChangeText?: (((text: string) => void) & Function),
-  error:boolean,
-  errorText?:string,
-  autoCapitalize?:"none" | "sentences" | "words" | "characters" | undefined,
-  autoCompleteType?:string,
-  textContentType?:any,
-  keyboardType?:KeyboardTypeOptions
-}) {
+}: props) {
   return (
     <View style={styles.container}>
       <Input

@@ -1,45 +1,46 @@
 // @flow
-
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import React from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
+
 import Background from '../../../components/Background';
-import Logo from '../../../components/Logo';
 import Header from '../../../components/Header';
 import Button from '../../../components/Button';
 import Paragraph from '../../../components/Paragraph';
 import LogoText from '../../../components/LogoText';
-import { StyleSheet } from 'react-native';
+import { RootStackParamList } from '../../navigation/ParamLists';
 
-type Props = {};
+type navigationType = StackNavigationProp<RootStackParamList, 'StartScreen'>;
+type Props = { navigation: navigationType };
 
-export default function StartScreen(props:any) {
+export default function StartScreen(props: Props) {
   return (
     <Background>
-      <View
-        style={styles.header}
-      >
+      <View style={styles.header}>
         <LogoText />
         {/* <Logo /> */}
       </View>
-      <View style= {{
-        paddingBottom: 100
-      }}>
+      <View
+        style={{
+          paddingBottom: 100,
+        }}
+      >
         <Header>Food Tracking App</Header>
         <Paragraph>Erlebe die Welt der Ernährung</Paragraph>
       </View>
-      <View
-        style={styles.buttons}
-      >
-        {/* @ts-ignore */}
+      <View style={styles.buttons}>
         <Button
           mode="outlined"
-          onPress={() => props.navigation.navigate('LoginScreen')} style={undefined}        >
+          onPress={() => props.navigation.navigate('LoginScreen')}
+          style={undefined}
+        >
           Login
         </Button>
-        {/* @ts-ignore */}
         <Button
           mode="outlined"
-          onPress={() => props.navigation.navigate('RegisterScreen')} style={undefined}        >
+          onPress={() => props.navigation.navigate('RegisterScreen')}
+          style={undefined}
+        >
           Registrieren
         </Button>
       </View>
@@ -47,16 +48,13 @@ export default function StartScreen(props:any) {
   );
 }
 
-
 const styles = StyleSheet.create({
   buttons: {
-
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     width: '70%',
-
   },
   header: {
     flex: 1,
@@ -64,4 +62,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-})
+});

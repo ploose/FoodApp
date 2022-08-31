@@ -12,7 +12,6 @@ export default function ProductPreview(props: {
   isLast: boolean,
   nutriScore: Nutriscore,
 }) {
-
   return (
     <View
       style={[styles.productBox, { borderBottomWidth: props.isLast ? 0 : 2 }]}

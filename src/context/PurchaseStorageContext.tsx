@@ -16,7 +16,7 @@ interface Props {
 
 const PurchaseStorageProvider: React.FC<Props> = ({ children }) => {
   const [purchases, setPurchases] = React.useState<IPurchase[]>(jsonFile);
-  
+
   const updatePurchase = (purchases: IPurchase[]) => {
     setPurchases(purchases);
   };

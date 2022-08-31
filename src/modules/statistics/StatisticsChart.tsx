@@ -1,15 +1,10 @@
 // @ts-nocheck -> Experimental Feature, will probably be changed to victorychart
-import Svg, {
-  Defs,
-  LinearGradient,
-  Path,
-  Rect,
-  Stop
-} from 'react-native-svg';
-import { colors } from '../../styles';
 import React, { MutableRefObject, useRef, useState } from 'react';
-import { LineChart, XAxis } from 'react-native-svg-charts';
+import { LineChart } from 'react-native-svg-charts';
+import Svg, { Defs, LinearGradient, Path, Rect, Stop } from 'react-native-svg';
 import { View, Text, PanResponder, Dimensions, StyleSheet } from 'react-native';
+
+import { colors } from '../../styles';
 import { IPurchase } from '../../@types/PurchaseStorage.d';
 import { extractDate, extractTotal } from '../../helpers/extractor';
 
@@ -31,7 +26,6 @@ export default function StatisticsChart(props: props) {
   const [priceList, setPriceList] = useState(totals);
   const size: MutableRefObject<number> = useRef(dateList.length);
   const totalChartWidth = apx(750);
-  const totalChartHeight = apx(750 / 2);
 
   const [positionX, setPositionX] = useState(-1); // The currently selected X coordinate position
 
@@ -97,11 +91,6 @@ export default function StatisticsChart(props: props) {
     left: apx(60),
     right: apx(30),
   };
-
-  const data = [
-    { value: 50, label: 'A', date: '08-31 15:09' },
-    { value: 150, labe: 'B', date: '08-31 15:10' },
-  ];
 
   return (
     <View

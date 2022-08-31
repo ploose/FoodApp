@@ -1,8 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import React, { useContext } from 'react';
 import { StyleSheet, View, TouchableOpacity, FlatList } from 'react-native';
-import { useState } from 'react';
-import moment from 'moment';
 
 import { Purchase } from '../../components';
 import { colors } from '../../styles';
@@ -12,20 +10,31 @@ import {
   IPurchase,
   PurchaseStorageContextType,
 } from '../../@types/PurchaseStorage.d';
-import {
-  RootTabParamList,
-  HistoryRootTabParamList,
-} from '../navigation/ParamLists';
+import { HistoryRootTabParamList } from '../navigation/ParamLists';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
 import { Nutriscore } from '../../helpers/nutriScores';
 
+import { custom_sort } from '../../helpers/purchaseUtils';
+
 type historyViewProp = StackNavigationProp<
   HistoryRootTabParamList,
   'HistoryView'
 >;
+
+function sortProducts(purchases: IPurchase[]) {
+  const jsonFile = purchases;
+  let productArray = [];
+  for (const element in jsonFile) {
+    jsonFile[element].id = element;
+    productArray.push(jsonFile[element]);
+  }
+  productArray.sort(custom_sort);
+
+  return productArray;
+}
 
 function HistoryView({ navigation }: { navigation: historyViewProp }) {
   const context: PurchaseStorageContextType | null = useContext(
@@ -36,6 +45,7 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
     purchases = [];
   } else {
     purchases = context.purchases;
+    purchases = sortProducts(purchases);
   }
 
   return (
@@ -52,7 +62,7 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
                 name={item.store}
                 date={item.date}
                 cost={item.total}
-                score={Object.values(Nutriscore)[index%5]}
+                score={Object.values(Nutriscore)[index % 5]}
               />
             </View>
           </TouchableOpacity>
@@ -62,13 +72,7 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
   );
 }
 
-type historyScreenProp = StackNavigationProp<RootTabParamList, 'Verlauf'>;
-
-export default function HistoryScreen({
-  navigation,
-}: {
-  navigation: historyScreenProp,
-}) {
+export default function HistoryScreen() {
   const Stack = createStackNavigator();
 
   return (
@@ -79,7 +83,7 @@ export default function HistoryScreen({
         options={{
           headerShown: true,
           headerStyle: {
-            backgroundColor: colors.primary
+            backgroundColor: colors.primary,
           },
           headerTintColor: '#fff',
           title: 'Verlauf',

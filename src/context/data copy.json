@@ -4,10 +4,6 @@
         "time": "10:06:15",
         "store": "MMM Neumarkt",
         "products": {
-            "MBud Caffè Macchiato": {
-                "price": "1",
-                "quantity": "1"
-            },
             "Yogos Pfirsich-Ananas": {
                 "price": "1",
                 "quantity": "1"
@@ -22,10 +18,6 @@
         "products": {
             "Evian 1l": {
                 "price": "1.05",
-                "quantity": "1"
-            },
-            "MBud Caffè Macchiato": {
-                "price": "1",
                 "quantity": "1"
             }
         },
@@ -154,10 +146,6 @@
             },
             "SG Schüblig": {
                 "price": "8.95",
-                "quantity": "1"
-            },
-            "Kassentragtasche": {
-                "price": "0.3",
                 "quantity": "1"
             },
             "Holzofenbrot dunkel": {

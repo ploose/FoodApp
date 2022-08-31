@@ -3,6 +3,7 @@ import { Image } from 'react-native';
 import { useState, useEffect } from 'react';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import StackNavigationDataNotAuth from './stackNavigationDataNotAuth';
 
 import BottomTabs from './MainTabNavigator';
@@ -42,7 +43,7 @@ export default function Navigator() {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
+    return subscriber;
   }, []);
 
   return <RootStackScreen user={user} />;

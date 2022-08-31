@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
-import { View, Text, Image } from 'react-native-ui-lib';
+import { View, Text } from 'react-native-ui-lib';
 import { Float } from 'react-native/Libraries/Types/CodegenTypes';
 
 import { colors } from '../../styles';
@@ -43,12 +43,11 @@ const styles = StyleSheet.create({
     borderColor: colors.black,
     borderWidth: 2,
     borderRadius: 5,
-    // width: '100%',
     flexDirection: 'row',
     margin: 5,
     height: 80,
     backgroundColor: '#F2F2F2',
-    elevation: 2
+    elevation: 2,
   },
   band: {
     width: 10,
@@ -81,17 +80,17 @@ const styles = StyleSheet.create({
     width: '65%',
     fontWeight: 'bold',
     alignSelf: 'center',
-    fontSize: 11
+    fontSize: 11,
   },
   percent: {
     width: '35%',
     alignSelf: 'center',
     fontSize: 11,
-    marginLeft: '2%'
+    marginLeft: '2%',
   },
   total: {
     width: '65%',
     alignSelf: 'center',
-    fontSize: 11
+    fontSize: 11,
   },
 });

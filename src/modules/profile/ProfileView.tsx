@@ -1,17 +1,16 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import auth from '@react-native-firebase/auth';
-import functions from '@react-native-firebase/functions';
 
 import { Button } from 'react-native-ui-lib';
 import { createStackNavigator } from '@react-navigation/stack';
-import { colors, fonts } from '../../styles';
-let user = auth().currentUser;
+import { colors } from '../../styles';
 
 const logoutIcon = require('../../../assets/images/icons/logout.png');
 
 const Stack = createStackNavigator();
 
+// Not working due to AutoID Labs deleting the user
 function fetchBackendData() {
   const requestOptions = {
     method: 'GET',
@@ -32,11 +31,15 @@ function fetchBackendData() {
 }
 
 function logOut() {
-  auth()
-    .signOut()
+  auth().signOut();
 }
 
-function ProfilePage(props: { navigation: { navigate: (arg0: string) => void; push: (arg0: string) => void; }; }) {
+function ProfilePage(props: {
+  navigation: {
+    navigate: (arg0: string) => void,
+    push: (arg0: string) => void,
+  },
+}) {
   return (
     <View style={styles.container}>
       <View style={styles.container}>
@@ -52,7 +55,10 @@ function ProfilePage(props: { navigation: { navigate: (arg0: string) => void; pu
         </View>
         <Image
           style={styles.avatar}
-          source={{ uri: 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=' }}
+          source={{
+            uri:
+              'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=',
+          }}
         />
         <View style={styles.body}>
           <View style={styles.bodyContent}>

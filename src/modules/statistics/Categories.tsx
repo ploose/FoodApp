@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { colors } from '../../styles';
 import { CategoryPanelProps } from './CategoryPanel';
 
 export enum CategoriesColor {

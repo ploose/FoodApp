@@ -10,11 +10,6 @@
                 "price": "1.05",
                 "quantity": "1",
                 "imageUrl": "https://image.migros.ch/mo-boxed/v-w-1000-h-1000/4945d64671a004edf8573386aceeeb88247d908b/evian.jpg"
-            },
-            "MBud Caffè Macchiato": {
-                "price": "1",
-                "quantity": "1",
-                "imageUrl": "https://image.migros.ch/mo-custom/v-w-175-h-150/720e4ca5938d63f771cc5734ad322563a7d1ceae/m-budget-saucisse-a-rotir.jpg"
             }
         }
     },
@@ -67,11 +62,6 @@
                 "price": "8.95",
                 "quantity": "1",
                 "imageUrl": "https://image.migros.ch/mo-boxed/v-w-1000-h-1000/29f08725578abca6cf50da9bedd291c5e46085de/olmaschueblig-1-stueck.jpg"
-            },
-            "Kassentragtasche": {
-                "price": "0.3",
-                "quantity": "1",
-                "imageUrl": "https://image.migros.ch/dynamic/resize-width-520-height-520/0667c8527629fd4b6d80413d18d7dd0d102289fd.jpg"
             },
             "Holzofenbrot dunkel": {
                 "price": "3.8",
@@ -142,11 +132,6 @@
         "store": "MMM Neumarkt",
         "total": 2,
         "products": {
-            "MBud Caffè Macchiato": {
-                "price": "1",
-                "quantity": "1",
-                "imageUrl": "https://image.migros.ch/mo-custom/v-w-175-h-150/720e4ca5938d63f771cc5734ad322563a7d1ceae/m-budget-saucisse-a-rotir.jpg"
-            },
             "Yogos Pfirsich-Ananas": {
                 "price": "1",
                 "quantity": "1",

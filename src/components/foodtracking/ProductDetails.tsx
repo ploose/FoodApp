@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    // width: '100%',
     padding: 10,
     height: 150,
   },
@@ -108,8 +107,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     maxHeight: 90,
     maxWidth: 100,
-    // width: '100%',
-
     transform: [{ scale: 1.25 }],
     aspectRatio: 1,
   },

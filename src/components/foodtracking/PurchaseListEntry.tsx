@@ -12,7 +12,6 @@ export default function Purchase(props: {
   cost: string,
   score: Nutriscore,
 }) {
-
   return (
     <View style={styles.lastPurchaseBox}>
       <View style={styles.lastPurchaseBoxSection}>
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 5,
     height: Dimensions.get('window').width / 5,
-    elevation: 5
+    elevation: 5,
   },
   lastPurchaseBoxSection: {
     flexDirection: 'row',
