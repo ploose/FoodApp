@@ -57,8 +57,6 @@ function StatisticsPieChart() {
           target: 'data',
           eventHandlers: {
             onClick: () => {
-              console.log("Clicked");
-              
               return [
                 {
                   target: "data",
@@ -83,6 +81,7 @@ function StatisticsPieChart() {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
+    
   },
 });
 

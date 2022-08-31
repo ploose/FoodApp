@@ -7,9 +7,7 @@ import { firebase } from '@react-native-firebase/auth';
 
 const Tab = createBottomTabNavigator();
 
-import PurchaseStorageProvider, {
-
-} from '../../../src/context/PurchaseStorageContext';
+import PurchaseStorageProvider from '../../../src/context/PurchaseStorageContext';
 
 export default function BottomTabs() {
   firebase.auth().onAuthStateChanged(user => {
@@ -53,22 +51,10 @@ export default function BottomTabs() {
             }}
           />
         ))}
-        {/* <Tab.Screen
-        name={"Survey"}
-        component={MultiStepSignUpSurvey}/> */}
       </Tab.Navigator>
     </PurchaseStorageProvider>
   );
 }
-
-// TODO: Survey
-
-// export const SurveyScreenStack = createStackNavigator({
-//   SurveyScreen: { screen: MultiStepSignUpSurvey },
-
-// }, {
-//   initialRoute: 'SurveyScreen',
-// })
 
 const styles = StyleSheet.create({
   tabBarItemContainer: {

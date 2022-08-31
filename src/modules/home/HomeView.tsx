@@ -118,6 +118,7 @@ export default function HomeScreen() {
                     price={item.price}
                     quantity={item.quantity}
                     isLast={idx == topProducts.length - 1}
+                    nutriScore={Object.values(Nutriscore)[idx%4]}
                   />
                 </View>
               </TouchableOpacity>
@@ -137,6 +138,7 @@ export default function HomeScreen() {
                     price={item.price}
                     quantity={item.quantity}
                     isLast={idx == topProducts.length - 1}
+                    nutriScore={Object.values(Nutriscore)[idx%5]}
                   />
                 </View>
               </TouchableOpacity>

@@ -36,8 +36,6 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
     purchases = [];
   } else {
     purchases = context.purchases;
-    console.log("Purchases", purchases);
-    
   }
 
   return (
@@ -45,7 +43,7 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
       <FlatList
         keyExtractor={item => item.id}
         data={purchases}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <TouchableOpacity
             onPress={() => navigation.navigate('PurchaseDetails', item)}
           >
@@ -54,7 +52,7 @@ function HistoryView({ navigation }: { navigation: historyViewProp }) {
                 name={item.store}
                 date={item.date}
                 cost={item.total}
-                score={Nutriscore.A}
+                score={Object.values(Nutriscore)[index%5]}
               />
             </View>
           </TouchableOpacity>

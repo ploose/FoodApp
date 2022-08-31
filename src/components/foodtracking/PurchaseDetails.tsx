@@ -18,9 +18,6 @@ export default function PurchaseDetails(props: {
 }) {
   let purchaseDetails = props.route.params;
 
-  console.log("Purchase Details", purchaseDetails);
-  
-
   let [SwipeablePanelActive, setSwipablePanelActive] = useState(false);
   let [PanelProduct, setPanelProduct] = useState<IProduct>({
     price: '0',

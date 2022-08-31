@@ -5,7 +5,6 @@ import { Image } from 'react-native-ui-lib';
 import { Nutriscore } from './nutriScores';
 
 export function nutriScoreImageProvider(nutriScore: Nutriscore) {
-  const assetsUrl = '/src/assets';
 
   switch (nutriScore) {
     case 'A':
@@ -48,7 +47,7 @@ export function nutriScoreImageProvider(nutriScore: Nutriscore) {
       );
 
     default:
-      Alert.alert('Nutriscore existiert nicht.');
+      
   }
 }
 

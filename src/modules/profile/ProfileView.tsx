@@ -6,37 +6,11 @@ import functions from '@react-native-firebase/functions';
 import { Button } from 'react-native-ui-lib';
 import { createStackNavigator } from '@react-navigation/stack';
 import { colors, fonts } from '../../styles';
-import MultiStepSignUpSurvey from '../survey/MultiStepSignUpSurvey';
-
 let user = auth().currentUser;
 
 const logoutIcon = require('../../../assets/images/icons/logout.png');
 
 const Stack = createStackNavigator();
-
-// function getCumulusData() {
-//   try {
-//     const text = functions().httpsCallable('testFunction');
-
-//     text().then(result => {
-//       console.log(result);
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-//TODO: Update data
-// function updateData() {
-//   try {
-//     const text = functions().httpsCallable('getCumulusData');
-//     text({ uid: user.uid }).then(result => {
-//       console.log(result);
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 
 function fetchBackendData() {
   const requestOptions = {
@@ -60,7 +34,6 @@ function fetchBackendData() {
 function logOut() {
   auth()
     .signOut()
-    .then(() => console.log('User signed out!'));
 }
 
 function ProfilePage(props: { navigation: { navigate: (arg0: string) => void; push: (arg0: string) => void; }; }) {
@@ -79,7 +52,7 @@ function ProfilePage(props: { navigation: { navigate: (arg0: string) => void; pu
         </View>
         <Image
           style={styles.avatar}
-          source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar2.png' }}
+          source={{ uri: 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=' }}
         />
         <View style={styles.body}>
           <View style={styles.bodyContent}>
@@ -97,15 +70,6 @@ function ProfilePage(props: { navigation: { navigate: (arg0: string) => void; pu
             >
               <Text>Verlauf</Text>
             </Button>
-            <Button
-              style={styles.buttonContainer}
-              onPress={() => props.navigation.push('SurveyStart')}
-            >
-              <Text>Fragebogen</Text>
-            </Button>
-            <Button style={styles.buttonContainer} onPress={fetchBackendData}>
-              <Text>Update data</Text>
-            </Button>
           </View>
         </View>
       </View>
@@ -119,11 +83,6 @@ export default function ProfileScreen(props: any) {
       <Stack.Screen
         name="Home"
         component={ProfilePage}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="SurveyStart"
-        component={MultiStepSignUpSurvey}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

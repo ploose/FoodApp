@@ -55,7 +55,7 @@ export default function ResetPasswordScreen({
       />
       {/* @ts-ignore */}
       <Button
-        mode="contained"
+        mode="outlined"
         onPress={sendResetPasswordEmail}
         style={{ marginTop: 16 }}
       >

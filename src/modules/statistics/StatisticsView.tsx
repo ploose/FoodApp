@@ -136,9 +136,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginTop: 5,
     paddingBottom: 12,
+    elevation: 5
   },
   piechartContainer: {
     marginHorizontal: 8,
+    elevation: 5
   },
   piechart: {
     borderWidth: 2,

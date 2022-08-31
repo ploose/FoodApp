@@ -41,10 +41,10 @@ export default function ProductDetails(props: props) {
       <View style={styles.nutritionInfoContainer}>
         <Text style={{ fontWeight: 'bold' }}>Nährwerte pro 100g</Text>
         <NutritionListEntry
-          color={'green'}
+          color={'red'}
           quantity={'5.6g'}
           name={'Fett'}
-          description={'Kleine Menge'}
+          description={'Hohe Menge'}
         />
         <NutritionListEntry
           color={'red'}
@@ -75,10 +75,11 @@ export default function ProductDetails(props: props) {
       <View style={styles.nutritionInfoContainer}>
         <Text style={{ fontWeight: 'bold' }}>Inhaltsstoffe</Text>
         <Text>
-          WEIZENmehl*, Wasser, BAUMNÜSSE 14%, ROGGENmehl* 7%, Kartoffelflocken*
-          5%, Hefe, WEIZENprotein, Kochsalz jodiert, Sonnenblumenöl, Zucker,
-          GERSTENmalzmehl, Kartoffelstärke, Mehlbehandlungsmittel:
-          Ascorbinsäure. * in IP-SUISSE Qualität
+          Schweinefleisch (Schweiz), Kalbfleisch (Schweiz), Magermilch, Speck
+          (Schweiz), Schwarten (Schweiz), jodiertes Kochsalz, Gewürze, Würze,
+          Glucose, Hefeextrakt, Antioxidationsmittel: Citronensäure,
+          Geschmacksverstärker: Mononatriumglutamat, Stabilisator: Diphosphate,
+          Hülle: Schweinedarm.
         </Text>
       </View>
     </View>
@@ -98,9 +99,9 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 150,
   },
-  headerContainer_image_container : {
+  headerContainer_image_container: {
     paddingHorizontal: '10%',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   headerContainer_image: {
     flex: 1,

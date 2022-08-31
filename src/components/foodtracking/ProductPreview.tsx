@@ -2,29 +2,27 @@ import React from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { colors } from '../../styles';
 import { View, Text, Image } from 'react-native-ui-lib';
-
-let isLastElement
+import { Nutriscore } from '../../helpers/nutriScores';
+import { nutriScoreImageProvider } from '../../helpers/nutriScoreImageProvider';
 
 export default function ProductPreview(props: {
   id: string,
   price: string,
   quantity: string,
-  isLast: boolean
+  isLast: boolean,
+  nutriScore: Nutriscore,
 }) {
 
-  isLastElement = props.isLast
-  console.log(isLastElement);
-  
-
   return (
-    <View style={[styles.productBox, {borderBottomWidth:props.isLast?0:2}]}>
+    <View
+      style={[styles.productBox, { borderBottomWidth: props.isLast ? 0 : 2 }]}
+    >
       <Text style={styles.product}>{props.id}</Text>
       <Text style={styles.quantity}>{props.quantity}</Text>
       <Text style={styles.price}>{parseFloat(props.price).toFixed(2)}</Text>
-      <Image
-        source={require('../../../assets/images/nutriscore/D.png')}
-        style={styles.nutriScore}
-      />
+      <View style={styles.nutriScore}>
+        {nutriScoreImageProvider(props.nutriScore)}
+      </View>
     </View>
   );
 }
