@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="FoodApp" />
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqmG6I2b26BIbR4D4dqIByKw9PDwLSGzQXQwVHCod11bRv9VW7yNCciA9nXpYcW_wxk3_KYJOp17ME11QdtO8rPG8ux5upJjdwCBmFhA5BOCtdZM6jFbqVZksSV32luF1ZeAvfBRMrK_MgOOHlRYHuDOUKmA9Kir0Fl61A6VDVRTCCbA5LuKjIPrIu/w640-h358/Screenshot_18.png" alt="FoodApp" />
 
   &#xa0;
 
